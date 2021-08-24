@@ -25,3 +25,11 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Unit Test / Coverage Reports #
+/coverage/
+coverage/
+.coverage
+.coverage.*
+coverage
+coverage/index.html
