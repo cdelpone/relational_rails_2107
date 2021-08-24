@@ -1,1 +1,10 @@
-<h1>Enter your Brand</h1>
+<a href="/">Home</a> | <a href="/brands">All Brands</a> | <a href="/brands/new">New Brand</a>
+
+<form action ="/brands" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a Brand:</p>
+  <input type='text' name='brand[brand_name]'/>Brand Name<br/>
+  <input type='numeric'name='brand[established]'>Established<br/>
+  <input type="boolean" name="brand[gnarly]">Gnarly?<br/>
+  <input type='submit'/>
+</form>

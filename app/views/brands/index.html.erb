@@ -1,5 +1,13 @@
 <h1>Follow your dreams</h1>
 
-<%= @brands %> 
-
-<a href="#"></a>
+<% @brands.each do |brand| %>
+  <h3><a href="/brands/<%= brand.id %>"><%= brand.brand_name %></a></h3>
+  <p>Year Est:<%= brand.established %></p>
+  <p>Gnarly?:<%= brand.gnarly %></p>
+  <a href="/brands/<%= brand.id %>/edit">Edit</a>
+  <form action="/brands/<%= brand.id %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete"/>
+  </form>
+<% end %>
