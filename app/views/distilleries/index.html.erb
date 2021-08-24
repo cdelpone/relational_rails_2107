@@ -3,4 +3,6 @@
 <h1>All Distilleries</h1>
 <h3>Click to learn more about each Distillery</h3>
 
-<%= @distilleries %>
+<% @distilleries.each do |distillery| %>
+  <h4><%= distillery %></h4>
+<% end %>
