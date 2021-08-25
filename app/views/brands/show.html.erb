@@ -1,0 +1,11 @@
+<a href="/">Home</a> | <a href="/brands">All Brands</a> | <a href="/brands/new">New Brand</a>
+
+<h3><a href="/brands/<%= @brand.id %>"></a><%= @brand.brand_name %></h3>
+<p>Year Est:<%= @brand.established %></p>
+<p>Gnarly?:<%= @brand.gnarly %></p>
+<a href="/brands/<%= @brand.id %>/edit">Edit</a>
+<form action="/brands/<%= @brand.id %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete"/>
+</form>

@@ -1,0 +1,18 @@
+<h1>Fuck you and your cute dad</h1>
+
+<a href="/">Home</a> | <a href="/brands">All Brands</a> | <a href="/brands/new">New Brand</a>
+
+
+<% @skateboards.each do |skateboard| %>
+  <h3><a href="/skateboards/<%= skateboard.id %>"><%= skateboard.board_name %></a></h3>
+  <p>Cost:<%= skateboard.cost %></p>
+  <p>Nose?:<%= skateboard.nose %></p>
+  <p>Brand:<%= skateboard.brand_id %></p>
+  
+  <a href="/skateboards/<%= skateboard.id %>/edit">Edit</a>
+  <form action="/skateboardss/<%= skateboard.id %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete"/>
+  </form>
+<% end %>
