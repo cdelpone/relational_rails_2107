@@ -1,0 +1,10 @@
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a>
+
+<h1>New Distillery</h1>
+<h3>Add details below for the Distillery you would like to add.</h3>
+<form action="/distilleries" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"><br>
+  <label for="Distillery Name">Distillery Name:</label>
+    <input type="string" id="distillery" name="distillery[name]" placeholder="Ex: Glenmorangie" size="50"><br><br>
+  <input type="submit" value="Add">
+</form>
