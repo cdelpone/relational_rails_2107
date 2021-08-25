@@ -4,6 +4,7 @@ class CreateDistilleries < ActiveRecord::Migration[5.2]
       t.string :name
       t.boolean :scotland_location
       t.numeric :established
+      t.timestamps
     end
   end
 end
