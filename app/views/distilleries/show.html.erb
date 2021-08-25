@@ -1,10 +1,16 @@
-<h2><a href="/distilleries">Distillery</a></h2>
-<!-- returns to all distilleries -->
-<h2><%= @distillery.name %></h2>
-<p><%= @distillery.scotland_location %></p>
-<p><%= @distillery.established %></p>
-<p><%= @distillery.created_at %></p>
-<p><%= @distillery.updated_at' %></p>
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a>
 
+<h2><a href="/distilleries">Distilleries</h2></a>
+<h2><%= @distillery.name %></h2>
+
+<p>Located in Scotland?: <%= @distillery.scotland_location%></p>
+<p>Established: <%= @distillery.established %></p>
+<p>Created: <%= @distillery.created_at %></p>
+<p>Updated: <%= @distillery.updated_at %></p>
+<br>
 <a href="/distilleries/<%= @distillery.id %>/edit">Update/Edit</a>
-<!-- add links to return to previous pages -->
+<form action="/distilleries/<%= @distillery.id %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete"/>
+</form>

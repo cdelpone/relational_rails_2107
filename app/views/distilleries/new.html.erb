@@ -1,4 +1,4 @@
-<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a>
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a>
 
 <h1>New Distillery</h1>
 <h3>Add details below for the Distillery you would like to add.</h3>
@@ -6,5 +6,13 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"><br>
   <label for="Distillery Name">Distillery Name:</label>
     <input type="string" id="distillery" name="distillery[name]" placeholder="Ex: Glenmorangie" size="50"><br><br>
+  <label for="scotland_location">Located in Scotland?</label>
+    <input type="radio" id="true" name="distillery[scotland_location]">
+    <label for="true">true</label>
+    <input type="radio" id="false" name="distillery[scotland_location]">
+    <label for="false">false</label><br><br>
+  <label for="established">Established In:</label>
+    <input type="number" name="distillery[established]" size="4"><br><br>
+
   <input type="submit" value="Add">
 </form>

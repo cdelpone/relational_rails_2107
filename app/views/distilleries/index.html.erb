@@ -1,17 +1,13 @@
-<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a>
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a>
 
-<h1>All Distilleries</h1>
+<h1>Welcome to scotch.scotch.scotch by Distillery!</h1>
+
+<h2>All Distilleries</h2>
 <h3>Click to learn more about each Distillery</h3>
 
-<h1>Welcome to scotch.scotch.scotch</h1>
-<ul>
-  <li><a href="/distilleries">All Distilleries</a></li>
-  <li><a href="/distilleries/new">New Distillery</a></li>
-</ul>
-
 <% @distilleries.each do |distillery| %>
-<h3><a href="/distilleries/<%= distillery.id %>"><%=distillery.name %></a></h3>
-  <h4><%= distillery %></h4>
+<h3><a href="/distilleries/<%= distillery.id %>"><%= distillery.name %></a></h3>
+<!-- move to show page? -->
   <p>Located in Scotland?: <%= distillery.scotland_location%><br>
   Established: <%= distillery.established %><br>
   Updated: <%= distillery.updated_at %><br>
