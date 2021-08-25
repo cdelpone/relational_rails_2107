@@ -1,8 +1,11 @@
-<form action="/tasks/<%= @task.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
+<a href="/">Home</a> | <a href="/brands">All Brands</a> | <a href="/brands/new">New Brand</a>
+
+<form action="/brand/<%= @brand.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+  <input type="hidden" name="_method" value="PATCH"/>
   <p>Edit</p>
-  <input type='text' name='task[title]' value="<%= @task.title %>"/><br/>
-  <textarea name='task[description]'><%= @task.description %></textarea><br/>
+  <input type='text' name='brand[brand_name]' value="<%= @brand.brand_name %>"/><br/>
+  <input type='numeric' name='brand[established]' value="<%= @brand.established %>"/><br/>
+  <input type="boolean" name="brand[gnarly]" value="<%= @brand.gnarly %>"/><br/>
   <input type='submit'/>
 </form>

@@ -43,6 +43,9 @@ Rails.application.routes.draw do
   get '/brands/new', to: 'brands#new'
   get '/brands/:id', to: 'brands#show'
   get '/brands/:id/edit', to: 'brands#edit'
+
   post '/brands', to: 'brands#create'
+  patch '/brand/:id', to: 'brands#update'
+  delete '/brands/:id', to: 'brands#destroy'
 
 end
