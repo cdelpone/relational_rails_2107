@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   get '/skateboards/:id/edit', to: 'skateboards#edit'
 
   post '/skateboards', to: 'skateboards#create'
-  patch '/brand/:id', to: 'skateboards#update'
+  patch '/skateboards/:id', to: 'skateboards#update'
   delete '/skateboards/:id', to: 'skateboards#destroy'
 
 end

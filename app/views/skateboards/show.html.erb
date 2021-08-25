@@ -1,6 +1,17 @@
-<a href="/">Home</a> | <a href="/brands">All Skateboards</a> | <a href="/skateboards/new">New Board</a>
+<a href="/">Home</a>
+<a href="/skateboards">All Skateboards</a>
+<a href="/skateboards/new">New Board</a>
 
-<h3><%= @skateboard.board_name %></h3>
+<h2><%= @skateboard.board_name %></h2>
+
 <p>Cost:<%= @skateboard.cost %></p>
 <p>Nose?:<%= @skateboard.nose %></p>
 <p>Brand:<%= @skateboard.brand_id %></p>
+
+<%= link_to "Edit", controller: "skateboards", action: "edit", id: @skateboard %>
+
+<form action="/skateboards/<%= @skateboard.id %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete"/>
+</form>
