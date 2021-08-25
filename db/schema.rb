@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_24_210304) do
+ActiveRecord::Schema.define(version: 2021_08_25_153702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,16 +19,6 @@ ActiveRecord::Schema.define(version: 2021_08_24_210304) do
     t.string "brand_name"
     t.decimal "established"
     t.boolean "gnarly"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "companies", force: :cascade do |t|
-    t.string "location"
-    t.datetime "established"
-    t.integer "num_of_pros"
-    t.boolean "gnarly"
-    t.string "company_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,5 +41,16 @@ ActiveRecord::Schema.define(version: 2021_08_24_210304) do
     t.index ["distilleries_id"], name: "index_scotches_on_distilleries_id"
   end
 
+  create_table "skateboards", force: :cascade do |t|
+    t.string "board_name"
+    t.float "cost"
+    t.boolean "nose"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "brand_id"
+    t.index ["brand_id"], name: "index_skateboards_on_brand_id"
+  end
+
   add_foreign_key "scotches", "distilleries", column: "distilleries_id"
+  add_foreign_key "skateboards", "brands"
 end
