@@ -3,6 +3,14 @@ Rails.application.routes.draw do
 
   get '/distilleries', to: 'distilleries#index'
 
+  get '/distilleries/new', to: 'distilleries#new'
+  post '/distilleries', to: 'distilleries#create'
+  get '/distilleries/:id', to: 'distilleries#show'
+  get '/distilleries/:id/edit', to: 'distilleries#edit'
+  patch '/distilleries/:id', to: 'distilleries#update'
+  delete '/distilleries/:id', to: 'distilleries#destroy'
+
+
 
 
 
@@ -56,5 +64,4 @@ Rails.application.routes.draw do
   post '/skateboards', to: 'skateboards#create'
   patch '/brand/:id', to: 'skateboards#update'
   delete '/skateboards/:id', to: 'skateboards#destroy'
-
 end
