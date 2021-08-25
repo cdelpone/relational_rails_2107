@@ -1,0 +1,2 @@
+class ScotchesController < ApplicationController
+end
