@@ -10,9 +10,7 @@ class ScotchesController < ApplicationController
     scotch = Scotch.new({
       name: params[:scotch][:name],
       single_malt: params[:scotch][:single_malt],
-      year: params[:scotch][:year],
-      updated_at: params[:scotch][:updated_at],
-      created_at: params[:scotch][:created_at]
+      year: params[:scotch][:year]
     })
     scotch.save
     redirect_to '/scotches'
