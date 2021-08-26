@@ -7,8 +7,7 @@
 
 <% @distilleries.each do |distillery| %>
 <h3><a href="/distilleries/<%= distillery.id %>"><%= distillery.name %></a></h3>
-<!-- move to show page? -->
-  <p>Located in Scotland?: <%= distillery.scotland_location%><br>
+  <p>Located in Scotland?: <%= distillery.scotland_location %><br>
   Established: <%= distillery.established %><br>
   Updated: <%= distillery.updated_at %><br>
   Created: <%= distillery.created_at %></p>

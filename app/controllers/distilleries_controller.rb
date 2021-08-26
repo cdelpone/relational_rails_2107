@@ -36,10 +36,8 @@ class DistilleriesController < ApplicationController
     distillery.update({
       name: params[:distillery][:name],
       scotland_location: params[:distillery][:scotland_location],
-      established: params[:distillery][:established],
-      updated_at: params[:distillery][:updated_at],
-      created_at: params[:distillery][:created_at]
-    })
+      established: params[:distillery][:established]
+      })
     distillery.save
     redirect_to '/distilleries/#{distillery.id}'
   end

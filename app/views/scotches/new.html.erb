@@ -5,14 +5,14 @@
 <form action="/scotches" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"><br>
   <label for="Scotch Name">Scotch Name:</label>
-    <input type="string" id="scotch" name="scotch[name]" placeholder="Ex: Glenmorangie  10 year" size="50"><br><br>
+    <input type="string" name="scotch[name]" placeholder="Ex: Glenmorangie 10 year" size="50"><br><br>
   <label for="single_malt">Single Malt?</label>
     <input type="radio" id="true" name="scotch[single_malt]">
-    <label for="true">true</label>
+      <label for="true">true</label>
     <input type="radio" id="false" name="scotch[single_malt]">
-    <label for="false">false</label><br><br>
+      <label for="false">false</label><br><br>
   <label for="year">Year:</label>
     <input type="number" name="scotch[year]"><br><br>
 
-  <input type="submit" value="Add">
+  <input type="submit" value="Add"/>
 </form>
