@@ -1,11 +1,14 @@
-<a href="/">Home</a> | <a href="/brands">All Brands</a> | <a href="/brands/new">New Brand</a>
+<a href="/">Home</a>
+<a href="/skateboards">All Brands</a>
+<a href="/skateboards/new">New Brand</a>
 
-<form action="/brand/<%= @brand.id %>" method="post">
+<form action="/skateboards/<%= @skateboard.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
   <input type="hidden" name="_method" value="PATCH"/>
   <p>Edit</p>
-  <input type='text' name='brand[brand_name]' value="<%= @brand.brand_name %>"/><br/>
-  <input type='numeric' name='brand[established]' value="<%= @brand.established %>"/><br/>
-  <input type="boolean" name="brand[gnarly]" value="<%= @brand.gnarly %>"/><br/>
+  <input type='text' name='skateboard[board_name]' value="<%= @skateboard.board_name %>"/><br/>
+  <input type='integer' name='skateboard[cost]' value="<%= @skateboard.cost %>"/><br/>
+  <input type="boolean" name="skateboard[nose]" value="<%= @skateboard.nose %>"/><br/>
+  <input type="integer" name="skateboard[brand_id]" value="<%= @skateboard.brand_id %>"/><br/>
   <input type='submit'/>
 </form>

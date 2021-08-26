@@ -1,0 +1,13 @@
+<a href="/">Home</a>
+<a href="/skateboards">All Skateboards</a>
+<a href="/skateboards/new">New Skateboard</a>
+
+<form action ="/skateboards" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+  <p>Enter a Board:</p>
+  <input type='text' name='skateboard[board_name]'/><br/>
+  <input type='float'name='skateboard[cost]'/><br/>
+  <input type="boolean" name="skateboard[nose]"/><br/>
+  <input type="integer" name="skateboard[brand_id]"/><br/>
+  <input type='submit'/>
+</form>
