@@ -1,8 +1,6 @@
 class DistilleriesController < ApplicationController
   def index
     @distilleries = Distillery.all
-    # in the distilleryscotchescontroller
-    #     @distillery = Distillery.find(params[:id])
     # for helper private helper method
     #     @distillery_scotches = distillery_scotches
   end
