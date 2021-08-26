@@ -12,6 +12,11 @@ RSpec.describe 'can dispay an index with options' do
       established: 1999,
       gnarly: false
       })
+    @brand_3 = Brand.create!({
+      brand_name: "Deathwish",
+      established: 2004,
+      gnarly: true
+      })
 
     visit('/brands')
   end
@@ -31,4 +36,13 @@ RSpec.describe 'can dispay an index with options' do
     expect(page).to have_content(@brand_2.gnarly)
   end
 
+  it 'can display the date entered into the app' do
+    expect(page).to have_content(@brand_1.created_at)
+    expect(page).to have_content(@brand_2.created_at)
+  end
+
+  it 'can display the brands in order of creation' do
+    expect("Deathwish").to appear_before("Birdhouse", only_text: true)
+    expect("Birdhouse").to appear_before("dogtown", only_text: true)
+  end
 end

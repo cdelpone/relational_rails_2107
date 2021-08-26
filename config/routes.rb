@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   get '/', to: 'welcome#index'
   get '/scotches', to: 'scotches#index'
@@ -63,4 +64,7 @@ Rails.application.routes.draw do
   post '/skateboards', to: 'skateboards#create'
   patch '/skateboards/:id', to: 'skateboards#update'
   delete '/skateboards/:id', to: 'skateboards#destroy'
+
+  get '/brands/:b_id/skateboards', to: 'brands_skateboards#index'
+
 end

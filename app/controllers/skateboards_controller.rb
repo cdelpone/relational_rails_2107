@@ -15,14 +15,13 @@ class SkateboardsController < ApplicationController
   end
 
   def create
-    skateboard = Skateboard.new({
+    skateboard = Skateboard.create({
       board_name: params[:skateboard][:board_name],
       cost: params[:skateboard][:cost],
       nose: params[:skateboard][:nose],
       brand_id: params[:skateboard][:brand_id]
       })
 
-    skateboard.save
     redirect_to '/skateboards'
   end
 
