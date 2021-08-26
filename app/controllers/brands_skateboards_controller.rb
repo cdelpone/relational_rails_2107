@@ -1,6 +1,7 @@
 class BrandsSkateboardsController < ApplicationController
   def index
-    # binding.pry
+    # require "pry"; binding.pry
     @brand = Brand.find(params[:b_id])
+    @skateboards = @brand.skateboards
   end
 end

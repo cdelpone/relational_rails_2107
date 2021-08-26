@@ -24,7 +24,6 @@ RSpec.describe 'can dispay a brand with its skateboards' do
   end
 
   it 'can display board name' do
-    open
     expect(page).to have_content(@skateboard_1.board_name)
     expect(page).to have_content(@skateboard_2.board_name)
   end
@@ -40,16 +39,15 @@ RSpec.describe 'can dispay a brand with its skateboards' do
   end
 
   it 'can display brand names' do
-    expect(page).to have_content(@brand_1.brand_name)
-    expect(page).to have_content(@brand_2.brand_name)
+    expect(page).to have_content(@brand.brand_name)
   end
 
   it 'can display years established' do
-    expect(page).to have_content(@brand_1.established)
+    expect(page).to have_content(@brand.established)
   end
 
   it 'can display if the company is gnarly or not' do
-    expect(page).to have_content(@brand_1.gnarly)
+    expect(page).to have_content(@brand.gnarly)
   end
 
 end

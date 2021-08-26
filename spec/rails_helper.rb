@@ -70,3 +70,9 @@ RSpec.configure do |config|
 end
 
 require 'capybara/rails'
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
