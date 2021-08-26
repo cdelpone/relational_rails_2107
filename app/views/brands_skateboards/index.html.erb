@@ -1,6 +1,9 @@
-<h3><a href="/brands/<%= @brand.id %>"></a><%= @brand.brand_name %></h3>
-<p>Year Est:<%= @brand.established %></p>
-<p>Gnarly?:<%= @brand.gnarly %></p>
+<p><a href="/skateboards">Skateboards</a></p> | <p><a href="/brands">Brands</a></p>
+
+
+<h1> Brand: <%= @brand.brand_name%> </h1>
+<p> Year Est:<%= @brand.established %> </p>
+<p> Gnarly?:<%= @brand.gnarly %> </p>
 
 <% @skateboards.each do |skateboard| %>
   <h3><a href="/skateboards/<%= skateboard.id %>"><%= skateboard.board_name %></a></h3>

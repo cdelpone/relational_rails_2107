@@ -65,6 +65,6 @@ Rails.application.routes.draw do
   patch '/skateboards/:id', to: 'skateboards#update'
   delete '/skateboards/:id', to: 'skateboards#destroy'
 
-  get '/brands/:b_id/skateboards', to: 'brands_skateboards#index'
+  get '/brands/:id/skateboards', to: 'brands_skateboards#index'
 
 end
