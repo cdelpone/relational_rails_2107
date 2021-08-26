@@ -7,14 +7,13 @@ class ScotchesController < ApplicationController
   end
 
   def create
-    scotch = Scotch.new({
+    scotch = Scotch.create({
       name: params[:scotch][:name],
       single_malt: params[:scotch][:single_malt],
       year: params[:scotch][:year],
-      updated_at: params[:scotch][:updated_at],
-      created_at: params[:scotch][:created_at]
+      distillery_id: params[:scotch][:distillery_id]
     })
-    scotch.save
+    # scotch.save
     redirect_to '/scotches'
   end
 
@@ -32,9 +31,7 @@ class ScotchesController < ApplicationController
     scotch.update({
       name: params[:scotch][:name],
       single_malt: params[:scotch][:single_malt],
-      year: params[:scotch][:year],
-      updated_at: params[:scotch][:updated_at],
-      created_at: params[:scotch][:created_at]
+      year: params[:scotch][:year]
     })
     scotch.save
     redirect_to '/scotches/#{scotch.id}'
@@ -42,6 +39,7 @@ class ScotchesController < ApplicationController
 
   def destroy
     Scotch.destroy(params[:id])
+
     redirect_to '/scotches'
   end
 end

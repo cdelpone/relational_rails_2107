@@ -1,21 +1,24 @@
+
 Rails.application.routes.draw do
   get '/', to: 'welcome#index'
+  get '/scotches', to: 'scotches#index'
+  get '/scotches/new', to: 'scotches#new'
+  post '/scotches', to: 'scotches#create'
+  get '/scotches/:id', to: 'scotches#show'
+  get '/scotches/:id/edit', to: 'scotches#edit'
+  patch '/scotches/:id', to: 'scotches#update'
+  delete '/scotches/:id', to: 'scotches#destroy'
 
   get '/distilleries', to: 'distilleries#index'
   get '/distilleries/new', to: 'distilleries#new'
+  post '/distilleries', to: 'distilleries#create'
   get '/distilleries/:id', to: 'distilleries#show'
   get '/distilleries/:id/edit', to: 'distilleries#edit'
-  post '/distilleries', to: 'distilleries#create'
   patch '/distilleries/:id', to: 'distilleries#update'
   delete '/distilleries/:id', to: 'distilleries#destroy'
 
-  get '/scotches', to: 'scotches#index'
-  get '/scotches/new', to: 'scotches#new'
-  get '/scotches/:id', to: 'scotches#show'
-  get '/scotches/:id/edit', to: 'scotches#edit'
-  post '/scotches', to: 'scotches#create'
-  patch '/scotches/:id', to: 'scotches#update'
-  delete '/scotches/:id', to: 'scotches#destroy'
+  get '/distilleries/:distillery_id/scotches', to: 'distillery_scotches#index'
+
 
 
 
@@ -61,4 +64,7 @@ Rails.application.routes.draw do
   post '/skateboards', to: 'skateboards#create'
   patch '/skateboards/:id', to: 'skateboards#update'
   delete '/skateboards/:id', to: 'skateboards#destroy'
+
+  get '/brands/:b_id/skateboards', to: 'brands_skateboards#index'
+
 end
