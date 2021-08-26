@@ -1,12 +1,14 @@
 <a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/scotches/new">New Scotch</a>
 
-<h2><a href="/distilleries">Distilleries</h2></a>
 <h2><%= @distillery.name %></h2>
 
 <p>Located in Scotland?: <%= @distillery.scotland_location %></p>
 <p>Established: <%= @distillery.established %></p>
 <p>Created: <%= @distillery.created_at %></p>
 <p>Updated: <%= @distillery.updated_at %></p>
+<p>Number of scotches: <%= @distillery.scotches.count %></p>
+<a href="/distilleries/<%= @distillery.id %>/scotches/">All Scotches from this distillery.</a>
+<br>
 <br>
 <a href="/distilleries/<%= @distillery.id %>/edit">Update/Edit</a>
 <form action="/distilleries/<%= @distillery.id %>" method="POST">

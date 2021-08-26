@@ -1,8 +1,6 @@
 class DistilleriesController < ApplicationController
   def index
-    @distilleries = Distillery.all
-    # for helper private helper method
-    #     @distillery_scotches = distillery_scotches
+    @distilleries = Distillery.order_by_creation
   end
 
   def new

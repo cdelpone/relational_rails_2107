@@ -1,4 +1,4 @@
-class DistilleryScotchesController < ApplicationController
+class DistilleriesScotchesController < ApplicationController
   def index
     @distillery = Distillery.find(params[:distillery_id])
     @scotches = @distillery.scotches

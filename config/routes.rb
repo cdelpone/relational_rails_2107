@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   patch '/distilleries/:id', to: 'distilleries#update'
   delete '/distilleries/:id', to: 'distilleries#destroy'
 
-  get '/distilleries/:distillery_id/scotches', to: 'distillery_scotches#index'
+  get '/distilleries/:distillery_id/scotches', to: 'distilleries_scotches#index'
 
 
 
