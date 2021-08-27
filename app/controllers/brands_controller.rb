@@ -4,6 +4,7 @@ class BrandsController < ApplicationController
   end
 
   def show
+    # require "pry"; binding.pry
     @brand = Brand.find(params[:id])
   end
 

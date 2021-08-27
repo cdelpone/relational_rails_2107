@@ -1,6 +1,4 @@
-<a href="/">Home</a>
-<a href="/skateboards">All Skateboards</a>
-<a href="/skateboards/new">New Skateboard</a>
+<h1><a href="/skateboards">Skateboards</a> | <a href="/brands">Brands</a></h1>
 
 <form action ="/skateboards" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
@@ -9,5 +7,5 @@
   <input type='float'name='skateboard[cost]'/><br/>
   <input type="boolean" name="skateboard[nose]"/><br/>
   <input type="integer" name="skateboard[brand_id]"/><br/>
-  <input type='submit'/>
+  <button type="submit">Submit</button>
 </form>

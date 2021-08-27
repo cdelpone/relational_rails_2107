@@ -23,7 +23,7 @@ RSpec.describe 'can dispay an index with options' do
 
   it 'can display brand names' do
     expect(page).to have_content(@brand_1.brand_name)
-    expect(page).to have_content(@brand_2.brand_name)
+    expect(page).to have_content(@brand_2.brand_name) # test all
   end
 
   it 'can display years established' do

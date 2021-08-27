@@ -1,6 +1,6 @@
-<a href="/">Home</a>
-<a href="/brands">All Brands</a>
-<a href="/brands/new">New Brand</a>
+<h1><a href="/skateboards">Skateboards</a> | <a href="/brands">Brands</a></h1>
+
+
 
 <form action ="/brands" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -8,5 +8,5 @@
   <input type='text' name='brand[brand_name]'/>Brand Name<br/>
   <input type='numeric'name='brand[established]'>Established<br/>
   <input type="boolean" name="brand[gnarly]">Gnarly?<br/>
-  <input type='submit'/>
+  <button type="submit">Submit</button>
 </form>

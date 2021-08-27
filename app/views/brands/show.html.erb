@@ -1,11 +1,14 @@
-<a href="/">Home</a> | <a href="/brands">All Brands</a> | <a href="/brands/new">New Brand</a>
+<h1><a href="/skateboards">Skateboards</a> | <a href="/brands">Brands</a></h1>
 
-<h3><a href="/brands/<%= @brand.id %>"></a><%= @brand.brand_name %></h3>
+<h3><%= @brand.brand_name %></h3>
 <p>Year Est:<%= @brand.established %></p>
 <p>Gnarly?:<%= @brand.gnarly %></p>
+<p>No. of Skateboards<%= @brand.num_of_skateboards %></p>
 <a href="/brands/<%= @brand.id %>/edit">Edit</a>
 <form action="/brands/<%= @brand.id %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="delete"/>
+  <input type="submit" value="delete">
 </form>
+
+<a href="/brands/<%= @brand.id %>/skateboards">Fuck you</a>
