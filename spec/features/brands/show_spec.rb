@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe 'can dispay brand with its attributes' do
+RSpec.describe 'Brand show' do
   before :each do
     @brand = Brand.create!({
       brand_name: "dogtown",

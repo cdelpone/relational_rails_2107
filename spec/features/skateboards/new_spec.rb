@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe 'Brand Edit' do
+RSpec.describe 'Skateboard New' do
   before :each do
     @brand = Brand.create!({
       brand_name: "dogtown",
@@ -8,13 +8,14 @@ RSpec.describe 'Brand Edit' do
       gnarly: true
       })
 
-    visit("/brands/#{@brand.id}/edit")
+    visit("/skateboards/new")
   end
 
-  it 'can change existing brand' do
-    fill_in "brand[brand_name]", with: "Suckboy"
-    fill_in "brand[established]", with: "100"
-    fill_in "brand[gnarly]", with: "false"
+  it 'can create a skateboard' do
+    fill_in "skateboard[board_name]", with: "Suckboy"
+    fill_in "skateboard[cost]", with: "100"
+    fill_in "skateboard[nose]", with: "false"
+    fill_in "skateboard[brand_id]", with: "#{@brand.id}"
 
     expect(page).to have_button("Submit")
 
@@ -25,9 +26,9 @@ RSpec.describe 'Brand Edit' do
     expect(page).to have_content("false")
   end
 
-  it 'redirects to the show page' do
+  it 'redirects to the index page' do
     click_on "Submit"
 
-    expect(current_path).to eq("/brands/#{@brand.id}")
+    expect(current_path).to eq("/skateboards")
   end
 end
