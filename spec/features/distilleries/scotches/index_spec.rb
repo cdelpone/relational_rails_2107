@@ -1,14 +1,5 @@
 require 'rails_helper'
-# User Story 5, Parent Children Index (x2)
-# As a visitor
-# When I visit '/parents/:parent_id/child_table_name'
-# Then I see each Child that is associated with that Parent with each Child's attributes:
-# from setlist tutorial:
-    # As a visitor
-    # when I visit a distillery scotches index
-    # then I see the names of all the distilleries scotches
-    # and I see each name is a link to the scotches show page
-
+# rspec spec/features/distilleries/scotches/index_spec.rb
 RSpec.describe 'Distillery scotches index' do
   before :each do
     @distillery_1 = Distillery.create!({
@@ -22,6 +13,14 @@ RSpec.describe 'Distillery scotches index' do
                                     established: 1779,
                                     scotland_location: true,
                                     id: 7
+                                    })
+    @distillery_6 = Distillery.create!({
+                                    name: "Laphroaig",
+                                    established: 1815,
+                                    scotland_location: true,
+                                    updated_at: '2021-08-26 00:06:30 UTC',
+                                    created_at: '2021-08-26 00:06:30 UTC',
+                                    id: 6
                                     })
     @scotch_1 = Scotch.create!({
                                     name: "An OA",
@@ -50,17 +49,37 @@ RSpec.describe 'Distillery scotches index' do
                                     distillery_id: 7,
                                     id: 3
                                     })
+    visit "/distilleries/#{@distillery_7.id}/scotches"
   end
 
   it 'shows all the names of the scotches for the distillery' do
-    visit "/distilleries/#{@distillery_7.id}/scotches"
-
+    # User Story 5, Parent Children Index (x2)
+    # As a visitor; # When I visit '/parents/:parent_id/child_table_name'; # Then I see each Child that is associated with that Parent with each Child's attributes:
     expect(page).to have_content(@scotch_2.name)
     expect(page).to have_content(@scotch_2.single_malt)
     expect(page).to have_content(@scotch_2.year)
     expect(page).to have_content(@scotch_2.distillery_id)
     expect(page).to have_content(@scotch_2.updated_at)
     expect(page).to have_content(@scotch_2.created_at)
+  end
+  it 'links to the distillery index page(interactivity)' do
+    # User Story 9, Parent Index Link
+    # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
+    expect(page).to have_link('Distilleries')
+    click_link 'Distilleries'
+    expect(current_path).to eq("/distilleries")
+    expect(page).to have_content(@distillery_6.name)
+  end
+
+  it 'links to the scotches index page(interactivity)' do
+    # User Story 9, Parent Index Link
+    # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
+    expect(page).to have_link('Scotches')
+    click_link 'Scotches'
+    expect(current_path).to eq("/scotches")
+    expect(page).to have_content(@scotch_1.name)
+    expect(page).to have_content(@scotch_2.name)
+    expect(page).to have_content(@scotch_3.name)
   end
 
   it 'links to each scotches show page' do
