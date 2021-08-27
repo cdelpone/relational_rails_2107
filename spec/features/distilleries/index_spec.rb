@@ -45,4 +45,12 @@ RSpec.describe 'distilleries index page', type: :feature do
     expect("Bowmore").to appear_before("Laphroaig", only_text: true)
   end
 
+  it 'displays the date the record was created for each distillery' do
+    expect("2021-08-26 01:11:07 UTC").to appear_before("Laphroaig", only_text: true)
+    expect("2021-08-26 00:06:30 UTC").to appear_before("Ardbeg", only_text: true)
+    expect("2021-08-25 16:34:12 UTC").to_not appear_before("Laphroaig", only_text: true)
+    expect("2021-08-26 00:06:30 UTC").to_not appear_before("Bowmore", only_text: true)
+  end
+
+
 end
