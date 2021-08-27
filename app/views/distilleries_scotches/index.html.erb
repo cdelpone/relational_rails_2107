@@ -1,0 +1,23 @@
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/scotches/new">New Scotch</a>
+
+<h2>Scotch Notes:</h2>
+
+<% @scotches.each do |scotch| %>
+<h3><a href="/scotches/<%= scotch.id %>"><%= scotch.name %></a></h3>
+  <p>Single Malt?: <%= scotch.single_malt %><br>
+  Year: <%= scotch.year %><br>
+  Distillery: <%= scotch.distillery.name %><br>
+  Updated: <%= scotch.updated_at %><br>
+  Created: <%= scotch.created_at %></p>
+
+  <a href="/scotches/<%= scotch.id %>/edit">Update/Edit</a>
+
+  <form action="/scotches/<%= scotch.id %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete"/>
+  </form>
+<% end %>
+
+
+<p><a href="/distilleries/<%= @distillery.id %>">Return to <%= @distillery.name %> homepage</a></p>
