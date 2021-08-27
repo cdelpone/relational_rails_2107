@@ -11,21 +11,26 @@ RSpec.describe 'distilleries index page', type: :feature do
                                     name: "Laphroaig",
                                     established: 1815,
                                     scotland_location: true,
+                                    updated_at: '2021-08-26 00:06:30 UTC',
+                                    created_at: '2021-08-26 00:06:30 UTC',
                                     id: 6
                                     })
     @distillery_1 = Distillery.create!({
                                     name: "Ardbeg",
                                     established: 1815,
                                     scotland_location: true,
+                                    updated_at: '2021-08-26 01:20:17 UTC',
+                                    created_at: '2021-08-25 16:34:12 UTC',
                                     id: 1
                                     })
     @distillery_7 = Distillery.create!({
                                     name: "Bowmore",
                                     established: 1779,
-                                    scotland_location: true,
+                                    scotland_location: false,
+                                    updated_at: '2021-08-26 01:11:07 UTC',
+                                    created_at: '2021-08-26 01:11:07 UTC',
                                     id: 7
                                     })
-
     visit '/distilleries'
   end
 
@@ -34,4 +39,10 @@ RSpec.describe 'distilleries index page', type: :feature do
     expect(page).to have_content(@distillery_1.name)
     expect(page).to have_content(@distillery_7.name)
   end
+
+  it 'displays records in order of creation (most recently created first)' do
+    expect("Laphroaig").to appear_before("Ardbeg", only_text: true)
+    expect("Bowmore").to appear_before("Laphroaig", only_text: true)
+  end
+
 end
