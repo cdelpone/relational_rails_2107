@@ -4,7 +4,7 @@
 # When I visit '/parents'
 # Then I see the name of each parent record in the system
 require 'rails_helper'
-
+# rspec spec/features/distilleries/index_spec.rb
 RSpec.describe 'distilleries index page', type: :feature do
   before :each do
     @distillery_6 = Distillery.create!({
@@ -52,5 +52,13 @@ RSpec.describe 'distilleries index page', type: :feature do
     expect("2021-08-26 00:06:30 UTC").to_not appear_before("Bowmore", only_text: true)
   end
 
+  it 'links to each distilleries show page' do
+    expect(page).to have_link(@distillery_6.name)
+
+    click_link @distillery_6.name
+
+    expect(current_path).to eq("/distilleries/#{@distillery_6.id}")
+    expect(page).to have_content(@distillery_6.name)
+  end
 
 end
