@@ -1,9 +1,5 @@
-# User Story 3, Child Index (x2)
-# As a visitor
-# When I visit '/child_table_name'
-# Then I see each Child in the system including the Child's attributes:
 require 'rails_helper'
-
+# rspec spec/features/scotches/index_spec.rb
 RSpec.describe 'scotches index page', type: :feature do
   before :each do
     @distillery_1 = Distillery.create!({
@@ -48,9 +44,44 @@ RSpec.describe 'scotches index page', type: :feature do
     visit '/scotches'
   end
 
-  it 'can see the names of all distilleries' do
+  it 'can see the names and attributes of all scotches' do
+    # User Story 3, Child Index (x2)
+    # As a visitor; # When I visit '/child_table_name'; # Then I see each Child in the system including the Child's attributes:
     expect(page).to have_content(@scotch_1.name)
+    expect(page).to have_content(@scotch_1.year)
+    expect(page).to have_content(@scotch_1.single_malt)
+    expect(page).to have_content(@scotch_1.created_at)
+    expect(page).to have_content(@scotch_1.updated_at)
+    expect(page).to have_content(@scotch_1.distillery_id)
+
     expect(page).to have_content(@scotch_2.name)
+    expect(page).to have_content(@scotch_2.year)
+    expect(page).to have_content(@scotch_2.single_malt)
+    expect(page).to have_content(@scotch_2.created_at)
+    expect(page).to have_content(@scotch_2.updated_at)
+    expect(page).to have_content(@scotch_2.distillery_id)
+
     expect(page).to have_content(@scotch_3.name)
+    expect(page).to have_content(@scotch_3.year)
+    expect(page).to have_content(@scotch_3.single_malt)
+    expect(page).to have_content(@scotch_3.created_at)
+    expect(page).to have_content(@scotch_3.updated_at)
+    expect(page).to have_content(@scotch_3.distillery_id)
+  end
+
+  it 'shows a link to the distillery index page' do
+    # User Story 9, Parent Index Link
+    # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
+    expect(page).to have_link('Distilleries')
+    click_link 'Distilleries'
+    expect(current_path).to eq("/distilleries")
+  end
+
+  it 'shows a link to the scotches index page' do
+    # User Story 9, Parent Index Link
+    # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
+    expect(page).to have_link('Scotches')
+    click_link 'Scotches'
+    expect(current_path).to eq("/scotches")
   end
 end
