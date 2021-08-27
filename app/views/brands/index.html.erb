@@ -1,4 +1,4 @@
-<p><a href="/skateboards">Skateboards</a></p> | <p><a href="/brands">Brands</a></p>
+<h1><a href="/skateboards">Skateboards</a> | <a href="/brands">Brands</a></h1>
 
 <h1>Brands</h1>
 
@@ -7,10 +7,18 @@
   <p>Year Est:<%= brand.established %></p>
   <p>Gnarly?:<%= brand.gnarly %></p>
   <p>Created at:<%= brand.created_at %></p>
-  <a href="/brands/<%= brand.id %>/edit">Edit</a>
+  <form action="/brands/<%= brand.id %>/edit">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button type="submit">Update</button>
+  </form>
   <form action="/brands/<%= brand.id %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="delete"/>
+    <input type="submit" value="Delete"/>
   </form>
 <% end %>
+
+<form action="/brands/new">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button type="submit">Add a brand</button>
+</form>

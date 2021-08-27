@@ -1,4 +1,4 @@
-<p><a href="/skateboards">Skateboards</a></p> | <p><a href="/brands">Brands</a></p>
+<h1><a href="/skateboards">Skateboards</a> | <a href="/brands">Brands</a></h1>
 
 <h1>Skateboards</h1>
 
@@ -8,7 +8,10 @@
   <p>Nose?:<%= skateboard.nose %></p>
   <p>Brand:<%= skateboard.brand_id %></p>
 
-  <a href="/skateboards/<%= skateboard.id %>/edit">Edit</a>
+  <form action="/skateboards/<%= skateboard.id %>/edit">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button type="submit">Update</button>
+  </form>
 
   <form action="/skateboards/<%= skateboard.id %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -16,3 +19,8 @@
     <input type="submit" value="delete"/>
   </form>
 <% end %>
+
+<form action="/skateboards/new">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button type="submit">Add a skateboard</button>
+</form>
