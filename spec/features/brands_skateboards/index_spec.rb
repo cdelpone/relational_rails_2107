@@ -8,7 +8,7 @@ RSpec.describe 'can dispay a brand with its skateboards' do
       gnarly: true
       })
     @skateboard_1 = Skateboard.create!({
-      board_name: "dogtown",
+      board_name: "Dogtown",
       cost: 20.00,
       nose: true,
       brand_id: @brand.id
@@ -38,16 +38,13 @@ RSpec.describe 'can dispay a brand with its skateboards' do
     expect(page).to have_content(@skateboard_2.nose)
   end
 
-  it 'can display brand names' do
-    expect(page).to have_content(@brand.brand_name)
-  end
+  it 'has a button to orginize in alphabetical order' do
+    expect(page).to have_button("A-Z")
 
-  it 'can display years established' do
-    expect(page).to have_content(@brand.established)
-  end
+    click_button("A-Z")
 
-  it 'can display if the company is gnarly or not' do
-    expect(page).to have_content(@brand.gnarly)
+    expect(current_path).to eq("/brands/#{@brand.id}/skateboards")
+    expect("Birdhouse").to appear_before("Dogtown")
   end
 
 end

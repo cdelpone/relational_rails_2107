@@ -1,9 +1,7 @@
-<p><a href="/skateboards">Skateboards</a></p> | <p><a href="/brands">Brands</a></p>
+<h1><a href="/skateboards">Skateboards</a> | <a href="/brands">Brands</a></h1>
 
 
 <h1> Brand: <%= @brand.brand_name%> </h1>
-<p> Year Est:<%= @brand.established %> </p>
-<p> Gnarly?:<%= @brand.gnarly %> </p>
 
 <% @skateboards.each do |skateboard| %>
   <h3><a href="/skateboards/<%= skateboard.id %>"><%= skateboard.board_name %></a></h3>
@@ -18,4 +16,15 @@
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="delete"/>
   </form>
+
+  <form action="/skateboards/<%= skateboard.id %>/edit">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button type="submit">Update</button>
+  </form>
 <% end %>
+
+<form action="/brands/<%= @brand.id %>/skateboards" >
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="order" value="alpha">
+  <button type="submit">A-Z</button>
+</form>
