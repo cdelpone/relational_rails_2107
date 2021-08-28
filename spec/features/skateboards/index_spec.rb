@@ -1,4 +1,4 @@
-require "rails_helper"
+  require "rails_helper"
 
 RSpec.describe 'can dispay an index with options' do
   before :each do
@@ -16,10 +16,15 @@ RSpec.describe 'can dispay an index with options' do
     @skateboard_2 = Skateboard.create!({
       board_name: "Birdhouse",
       cost: 40.00,
+      nose: true,
+      brand_id: @brand.id
+      })
+    @skateboard_3 = Skateboard.create!({
+      board_name: "Chicken",
+      cost: 40.00,
       nose: false,
       brand_id: @brand.id
       })
-
     visit('/skateboards')
   end
 
