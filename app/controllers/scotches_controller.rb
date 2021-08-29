@@ -1,6 +1,12 @@
 class ScotchesController < ApplicationController
+  # def index
+  #   require "pry"; binding.pry
+  # end
+
   def index
-    @scotches = Scotch.all
+    @scotches = Scotch.all.find_all do |scotch|
+      scotch.single_malt == true
+    end
   end
 
   def new
@@ -13,7 +19,7 @@ class ScotchesController < ApplicationController
       year: params[:scotch][:year],
       distillery_id: params[:scotch][:distillery_id]
     })
-    # scotch.save
+    scotch.save
     redirect_to '/scotches'
   end
 
@@ -34,7 +40,7 @@ class ScotchesController < ApplicationController
       year: params[:scotch][:year]
     })
     scotch.save
-    redirect_to '/scotches/#{scotch.id}'
+    redirect_to "/scotches/#{scotch.id}"
   end
 
   def destroy
