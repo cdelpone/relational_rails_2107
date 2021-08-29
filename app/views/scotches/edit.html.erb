@@ -11,9 +11,8 @@
     <input type="radio" id="true" name="scotch[single_malt]" value="<%= @scotch.single_malt %>"/>
     <label for="true">true</label>
     <input type="radio" id="false" name="scotch[single_malt]" value="<%= @scotch.single_malt %>"/>
-    <label for="false">false</label>
-<br/>
+    <label for="false">false</label><br/>
   <label for="year">Year:</label>
     <input type="number" name="scotch[year]" value="<%= @scotch.year %>"/><br><br>
-  <input type="submit" value="Update">
+  <button type="submit">Submit</button>
 </form>
