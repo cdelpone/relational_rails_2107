@@ -21,7 +21,7 @@ RSpec.describe 'distillery show page', type: :feature do
     @distillery_7 = Distillery.create!({
                                     name: "Bowmore",
                                     established: 1779,
-                                    scotland_location: false,
+                                    scotland_location: true,
                                     updated_at: '2021-08-26 01:11:07 UTC',
                                     created_at: '2021-08-26 01:11:07 UTC',
                                     id: 7
@@ -46,7 +46,7 @@ RSpec.describe 'distillery show page', type: :feature do
                                     })
     @scotch_3 = Scotch.create!({
                                     name: "Bowmore 12 yr",
-                                    single_malt: false,
+                                    single_malt: true,
                                     year: 12,
                                     updated_at: '2021-08-26 21:34:25 UTC',
                                     created_at: '2021-08-26 21:34:25 UTC',
@@ -79,10 +79,8 @@ RSpec.describe 'distillery show page', type: :feature do
     it 'only displays if the distillery is located in scotland or not for the distillery selected' do
       visit '/distilleries/1'
       expect(page).to have_content(@distillery_1.scotland_location)
-      expect(page).to have_no_content(@distillery_7.scotland_location)
       visit '/distilleries/7'
       expect(page).to have_content(@distillery_7.scotland_location)
-      expect(page).to have_no_content(@distillery_1.scotland_location)
     end
 
     it 'only displays the date the distillery record was created for the distillery selected' do
@@ -134,7 +132,7 @@ RSpec.describe 'distillery show page', type: :feature do
     end
 
     it 'links to the scotches index page(interactivity)' do
-      # User Story 9, Parent Index Link; # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
+      # User Story 8, Child Index Link; # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Child Index
       visit '/distilleries/7'
       expect(page).to have_link('Scotches')
       click_link 'Scotches'
@@ -145,8 +143,8 @@ RSpec.describe 'distillery show page', type: :feature do
     end
 
     it 'links to the distilleries update/edit page' do
-    # User Story 12, Parent Update (x2)
-    # As a visitor; # When I visit a parent show page; # Then I see a link to update the parent "Update Parent"; # When I click the link "Update Parent"; # Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:; # When I fill out the form with updated information; # And I click the button to submit the form; # Then a `PATCH` request is sent to '/parents/:id',; # the parent's info is updated,; # and I am redirected to the Parent's Show page where I see the parent's updated info
+      # User Story 12, Parent Update (x2)
+      # As a visitor; # When I visit a parent show page; # Then I see a link to update the parent "Update Parent"; # When I click the link "Update Parent"; # Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:; # When I fill out the form with updated information; # And I click the button to submit the form; # Then a `PATCH` request is sent to '/parents/:id',; # the parent's info is updated,; # and I am redirected to the Parent's Show page where I see the parent's updated info
       visit '/distilleries/7'
       expect(page).to have_link('Update')
       click_link 'Update'
