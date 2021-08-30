@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   delete '/distilleries/:id', to: 'distilleries#destroy'
 
   get '/distilleries/:distillery_id/scotches', to: 'distilleries_scotches#index'
-
-
+  get '/distilleries/:distillery_id/scotches/new', to: 'distilleries_scotches#new'
+  post '/distilleries/:distillery_id/scotches', to: 'distilleries_scotches#create'
 
 
 
