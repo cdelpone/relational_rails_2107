@@ -1,17 +1,14 @@
 <a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/scotches/new">New Scotch</a>
 
 <h2>New Distillery</h2>
-<form action="/distilleries" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"><br>
-  <label for="Distillery Name">Distillery Name:</label>
-    <input type="string" id="distillery" name="distillery[name]" placeholder="Ex: Glenmorangie" size="50"><br><br>
-  <label for="scotland_location">Located in Scotland?</label>
-    <input type="radio" id="true" name="distillery[scotland_location]">
-    <label for="true">true</label>
-    <input type="radio" id="false" name="distillery[scotland_location]">
-    <label for="false">false</label><br><br>
-  <label for="established">Established In:</label>
-    <input type="number" name="distillery[established]" size="4"><br><br>
 
-  <input type="submit" value="Create Distillery">
-</form>
+<%= form_with url: "/distilleries", local: true do |f| %>
+  <%= f.label :name, "Distillery Name:" %>
+  <%= f.text_field :name %><br>
+  <%= f.label :scotland_location, "Located in Scotland?" %>
+  <%= f.check_box :scotland_location %>
+  <%= f.label :scotland_location, "Yes", :value => true %><br>
+  <%= f.label :established, "Year Established:" %>
+  <%= f.text_field :established %><br><br>
+  <%= f.submit "Create Distillery" %>
+<% end %>
