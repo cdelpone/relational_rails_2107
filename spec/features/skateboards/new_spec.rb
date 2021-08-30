@@ -14,7 +14,7 @@ RSpec.describe 'Skateboard New' do
   it 'can create a skateboard' do
     fill_in "skateboard[board_name]", with: "Suckboy"
     fill_in "skateboard[cost]", with: "100"
-    fill_in "skateboard[nose]", with: "false"
+    fill_in "skateboard[nose]", with: "true"
     fill_in "skateboard[brand_id]", with: "#{@brand.id}"
 
     expect(page).to have_button("Submit")
@@ -23,7 +23,7 @@ RSpec.describe 'Skateboard New' do
 
     expect(page).to have_content("Suckboy")
     expect(page).to have_content("100")
-    expect(page).to have_content("false")
+    expect(page).to have_content("true")
   end
 
   it 'redirects to the index page' do

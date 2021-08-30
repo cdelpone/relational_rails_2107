@@ -13,7 +13,7 @@ RSpec.describe 'Brand new' do
     expect(page).to have_button("Submit")
 
     click_on "Submit"
-    save_and_open_page
+
     expect(page).to have_content("Suckboy")
     expect(page).to have_content("100")
     expect(page).to have_content("false")

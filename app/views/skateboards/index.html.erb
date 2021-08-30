@@ -2,7 +2,7 @@
 
 <h1>Skateboards</h1>
 
-<% @skateboards.each do |skateboard| %>
+<% Skateboard.nose_filter.each do |skateboard| %>
   <h3><a href="/skateboards/<%= skateboard.id %>"><%= skateboard.board_name %></a></h3>
   <p>Cost:<%= skateboard.cost %></p>
   <p>Nose?:<%= skateboard.nose %></p>
