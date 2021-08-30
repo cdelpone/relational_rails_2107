@@ -78,10 +78,49 @@ RSpec.describe 'scotches index page', type: :feature do
   end
 
   it 'shows a link to the scotches index page' do
-    # User Story 9, Parent Index Link
-    # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
+    # User Story 8, Child Index Link; # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Child Index
     expect(page).to have_link('Scotches')
     click_link 'Scotches'
     expect(current_path).to eq("/scotches")
+  end
+
+  it 'only shows true records for single_malt' do
+    # User Story 15, Child Index only shows `true` Records (x2); # As a visitor; # When I visit the child index; # Then I only see records where the boolean column is `true`
+    scotch_5 = Scotch.create!({
+                                    name: "Bowmore 18 yr",
+                                    single_malt: true,
+                                    year: 10,
+                                    updated_at: '2021-08-26 20:10:37 UTC',
+                                    created_at: '2021-08-26 20:10:37 UTC',
+                                    distillery_id: 7,
+                                    id: 5
+                                    })
+    scotch_6 = Scotch.create!({
+                                    name: "Ardbeg 10 yr",
+                                    single_malt: true,
+                                    year: 10,
+                                    updated_at: '2021-08-26 21:34:25 UTC',
+                                    created_at: '2021-08-26 21:34:25 UTC',
+                                    distillery_id: 1,
+                                    id: 6
+                                    })
+    expect(page).to have_content(@scotch_1.name)
+    expect(page).to have_content(@scotch_2.name)
+    expect(page).to have_no_content(scotch_5.name)
+    expect(page).to have_no_content(scotch_6.name)
+    expect(page).to have_content(true)
+    expect(page).to have_no_content(false)
+  end
+
+  it "has a link to each scotches's edit page" do
+    # User Story 18, Child Update From Childs Index Page (x1)
+    # As a visitor; # When I visit the `child_table_name` index page or a parent `child_table_name` index page; # Next to every child, I see a link to edit that child's info; # When I click the link; # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+    expect(page).to have_link('Update')
+    expect(page).to have_link("/scotches/#{@scotch_1.id}/edit")
+
+    click_link 'Update'
+
+    expect(current_path).to eq("/scotches/#{@scotch_1.id}/edit")
+    expect(page).to have_content(@scotch_1.name)
   end
 end

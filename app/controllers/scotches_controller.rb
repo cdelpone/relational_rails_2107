@@ -1,20 +1,20 @@
 class ScotchesController < ApplicationController
   def index
-    @scotches = Scotch.all
+    @scotches = Scotch.all.find_all do |scotch|
+      scotch.single_malt == true
+    end
   end
 
   def new
   end
 
   def create
-    scotch = Scotch.create({
-      name: params[:scotch][:name],
-      single_malt: params[:scotch][:single_malt],
-      year: params[:scotch][:year],
-      distillery_id: params[:scotch][:distillery_id]
-    })
-    # scotch.save
-    redirect_to '/scotches'
+    scotch = Scotch.create(scotch_params)
+    if scotch.save
+      redirect_to '/scotches'
+    else
+      "wrong"
+    end
   end
 
   def show
@@ -27,19 +27,18 @@ class ScotchesController < ApplicationController
 
   def update
     scotch = Scotch.find(params[:id])
-
-    scotch.update({
-      name: params[:scotch][:name],
-      single_malt: params[:scotch][:single_malt],
-      year: params[:scotch][:year]
-    })
+    scotch.update(scotch_params)
     scotch.save
-    redirect_to '/scotches/#{scotch.id}'
+    redirect_to "/scotches/#{scotch.id}"
   end
 
   def destroy
     Scotch.destroy(params[:id])
-
     redirect_to '/scotches'
   end
+
+  private
+    def scotch_params
+      params.permit(:name, :single_malt, :year)
+    end
 end

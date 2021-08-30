@@ -2,18 +2,13 @@
 
 <h2>Edit <%= @scotch.name %></h2>
 
-<form action="/scotches/<%= @scotch.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <label for="Scotch Name">Scotch Name:</label>
-    <input type="string" name="scotch[name]" value="<%= @scotch.name %>"/><br/>
-  <label for="single_malt">Single Malt?</label>
-    <input type="radio" id="true" name="scotch[single_malt]" value="<%= @scotch.single_malt %>"/>
-    <label for="true">true</label>
-    <input type="radio" id="false" name="scotch[single_malt]" value="<%= @scotch.single_malt %>"/>
-    <label for="false">false</label>
-<br/>
-  <label for="year">Year:</label>
-    <input type="number" name="scotch[year]" value="<%= @scotch.year %>"/><br><br>
-  <input type="submit" value="Update">
-</form>
+<%= form_with url: "/scotches/#{@scotch.id}", method: :patch, local: true do |f| %>
+  <%= f.label :name, "Scotch Name:" %>
+  <%= f.text_field :name, :placeholder => "#{@scotch.name}", :size => "30" %><br>
+  <%= f.label :single_malt, "Single Malt?" %>
+  <%= f.check_box :single_malt %>
+  <%= f.label :single_malt, "Yes", :value => true %><br>
+  <%= f.label :year, "Year:" %>
+  <%= f.text_field :year, :placeholder => "#{@scotch.year}", :size => "4" %><br><br>
+  <%= f.submit "Update" %>
+<% end %>

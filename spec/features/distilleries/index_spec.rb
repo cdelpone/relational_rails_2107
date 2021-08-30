@@ -21,7 +21,7 @@ RSpec.describe 'distilleries index page', type: :feature do
     @distillery_7 = Distillery.create!({
                                     name: "Bowmore",
                                     established: 1779,
-                                    scotland_location: false,
+                                    scotland_location: true,
                                     updated_at: '2021-08-26 01:11:07 UTC',
                                     created_at: '2021-08-26 01:11:07 UTC',
                                     id: 7
@@ -71,10 +71,29 @@ RSpec.describe 'distilleries index page', type: :feature do
   end
 
   it 'shows a link to the scotches index page' do
-    # User Story 9, Parent Index Link
-    # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
+    # User Story 8, Child Index Link; # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Child Index
     expect(page).to have_link('Scotches')
     click_link 'Scotches'
     expect(current_path).to eq("/scotches")
+  end
+
+  it 'shows a link to create a new distillery' do
+    # User Story 11, Parent Creation (x2)
+    # As a visitor; # When I visit the Parent Index page; # Then I see a link to create a new Parent record, "New Parent"; # When I click this link; # Then I am taken to '/parents/new' where I  see a form for a new parent record; # When I fill out the form with a new parent's attributes:; # And I click the button "Create Parent" to submit the form; # Then a `POST` request is sent to the '/parents' route,; # a new parent record is created,; # and I am redirected to the Parent Index page where I see the new Parent displayed.
+    expect(page).to have_link('New Distillery')
+    click_link 'New Distillery'
+    expect(current_path).to eq("/distilleries/new")
+  end
+
+  it "has a link to each distillery's edit page" do
+    # User Story 17, Parent Update From Parent Index Page (x2)
+    # As a visitor; # When I visit the parent index page; # Next to every parent, I see a link to edit that parent's info; # When I click the link; # I should be taken to that parents edit page where I can update its information just like in User Story 4
+    expect(page).to have_link('Update')
+    expect(page).to have_link("/distilleries/#{@distillery_6.id}/edit")
+
+    click_link 'Update'
+
+    expect(current_path).to eq("/distilleries/#{@distillery_6.id}/edit")
+    expect(page).to have_content(@distillery_6.name)
   end
 end

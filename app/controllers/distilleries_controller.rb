@@ -7,15 +7,12 @@ class DistilleriesController < ApplicationController
   end
 
   def create
-    distillery = Distillery.new({
-      name: params[:distillery][:name],
-      scotland_location: params[:distillery][:scotland_location],
-      established: params[:distillery][:established],
-      updated_at: params[:distillery][:updated_at],
-      created_at: params[:distillery][:created_at]
-    })
-    distillery.save
-    redirect_to '/distilleries'
+    distillery = Distillery.new(distillery_params)
+    if distillery.save
+      redirect_to '/distilleries'
+    else
+      "wrong"
+    end
   end
 
   def show
@@ -28,18 +25,19 @@ class DistilleriesController < ApplicationController
 
   def update
     distillery = Distillery.find(params[:id])
-
-    distillery.update({
-      name: params[:distillery][:name],
-      scotland_location: params[:distillery][:scotland_location],
-      established: params[:distillery][:established]
-      })
+    distillery.update(distillery_params)
     distillery.save
-    redirect_to '/distilleries/#{distillery.id}'
+    redirect_to "/distilleries/#{distillery.id}"
   end
 
   def destroy
     Distillery.destroy(params[:id])
     redirect_to '/distilleries'
+  end
+
+private
+  def distillery_params
+    # params.require(:distillery).permit(:name, :scotland_location, :established)
+    params.permit(:name, :scotland_location, :established)
   end
 end
