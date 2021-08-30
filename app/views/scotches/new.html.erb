@@ -1,20 +1,14 @@
 <a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/scotches/new">New Scotch</a>
 
-<h1>New Scotch</h1>
-<h3>Add details below for the Scotch you would like to add.</h3>
-<form action="/scotches" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"><br>
-  <label for="Scotch Name">Scotch Name:</label>
-    <input type="string" name="scotch[name]" placeholder="Ex: Glenmorangie 10 year" size="50"><br><br>
-  <label for="single_malt">Single Malt?</label>
-    <input type="radio" id="true" name="scotch[single_malt]">
-      <label for="true">true</label>
-    <input type="radio" id="false" name="scotch[single_malt]">
-      <label for="false">false</label><br><br>
-  <label for="year">Year:</label>
-    <input type="number" name="scotch[year]"><br>
-  <label for="distillery_id">Distillery_id:</label>
-    <input type="integer" name="scotch[distillery_id]"><br>
-    <br>
-  <input type="submit" value="Add"/>
-</form>
+<h2>New Scotch</h2>
+
+<%= form_with url: "/scotches", local: true do |f| %>
+  <%= f.label :name, "Scotch Name:" %>
+  <%= f.text_field :name %><br>
+  <%= f.label :single_malt, "Single Malt?" %>
+  <%= f.check_box :single_malt %>
+  <%= f.label :single_malt, "Yes", :value => true %><br>
+  <%= f.label :year, "Year:" %>
+  <%= f.text_field :year %><br><br>
+  <%= f.submit "Create Scotch" %>
+<% end %>
