@@ -42,7 +42,7 @@ RSpec.describe 'scotch show page', type: :feature do
                                     })
     @scotch_3 = Scotch.create!({
                                     name: "Bowmore 12 yr",
-                                    single_malt: false,
+                                    single_malt: true,
                                     year: 12,
                                     updated_at: '2021-08-26 21:34:25 UTC',
                                     created_at: '2021-08-26 21:34:25 UTC',
@@ -75,10 +75,8 @@ RSpec.describe 'scotch show page', type: :feature do
     it 'only displays if the scotch is single malt or not for the scotch selected' do
       visit '/scotches/3'
       expect(page).to have_content(@scotch_3.single_malt)
-      expect(page).to have_no_content(@scotch_2.single_malt)
       visit '/scotches/2'
       expect(page).to have_content(@scotch_2.single_malt)
-      expect(page).to have_no_content(@scotch_3.single_malt)
     end
 
     it 'only displays the date the scotch record was created for the scotch selected' do
@@ -98,24 +96,14 @@ RSpec.describe 'scotch show page', type: :feature do
       expect(page).to have_content(@scotch_3.updated_at)
       expect(page).to have_no_content(@scotch_2.updated_at)
     end
-
-    # it 'only displays the distillery id associated with the scotch selected' do
-    #   visit '/scotches/3'
-    #   expect(page).to have_content(@scotch_3.distillery_id)
-    #   expect(page).to have_no_content(@scotch_2.distillery_id)
-    #   expect(page).to have_no_content(@scotch_1.distillery_id)
-    #   visit '/scotches/1'
-    #   expect(page).to have_content(@scotch_1.distillery_id)
-    #   expect(page).to have_no_content(@scotch_2.distillery_id)
-    #   expect(page).to have_no_content(@scotch_3.distillery_id)
-    # end
   end
 
-  describe 'does other things on the show page for the scotch selected' do
+  describe 'has links on the show page for the scotch selected' do
+    before :each do
+      visit '/scotches/2'
+    end
     it 'links to the distillery index page(interactivity)' do
-      # User Story 9, Parent Index Link
-      # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
-      visit '/distilleries/7'
+      # User Story 9, Parent Index Link; # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
       expect(page).to have_link('Distilleries')
       click_link 'Distilleries'
       expect(current_path).to eq("/distilleries")
@@ -123,15 +111,24 @@ RSpec.describe 'scotch show page', type: :feature do
     end
 
     it 'links to the scotches index page(interactivity)' do
-      # User Story 9, Parent Index Link
-      # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
-      visit '/distilleries/7'
+      # User Story 8, Child Index Link; # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Child Index
       expect(page).to have_link('Scotches')
       click_link 'Scotches'
       expect(current_path).to eq("/scotches")
       expect(page).to have_content(@scotch_1.name)
       expect(page).to have_content(@scotch_2.name)
       expect(page).to have_content(@scotch_3.name)
+    end
+
+    it 'has a link to update a scotch' do
+      # User Story 14, Child Update (x2)
+      # As a visitor; # When I visit a Child Show page; # Then I see a link to update that Child "Update Child"; # When I click the link; # I am taken to '/child_table_name/:id/edit' where I see a form to edit the child's attributes:; # When I click the button to submit the form "Update Child"; # Then a `PATCH` request is sent to '/child_table_name/:id',; # the child's data is updated,; # and I am redirected to the Child Show page where I see the Child's updated information
+      expect(page).to have_link('Update')
+      click_link 'Update'
+      expect(current_path).to eq('/scotches/2/edit')
+      expect(page).to have_content(@scotch_2.name)
+      expect(page).to have_button('Update')
+      click_button 'Update'
     end
   end
 end
