@@ -2,12 +2,13 @@
 
 <h2><%= @scotch.name %></h2>
 
-<p>Single Malt?: <%= @scotch.single_malt %></p>
-<p>Year: <%= @scotch.year %></p>
-<p>Created: <%= @scotch.created_at %></p>
-<p>Updated: <%= @scotch.updated_at %></p>
-<br>
-<a href="/scotches/<%= @scotch.id %>/edit">Update</a>
+<p>Single Malt?: <%= @scotch.single_malt %><br>
+Year: <%= @scotch.year %><br>
+Created: <%= @scotch.created_at %><br>
+Updated: <%= @scotch.updated_at %></p>
+
+<a href="/scotches/<%= @scotch.id %>/edit">Update</a><br><br>
+
 <form action="/scotches/<%= @scotch.id %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="DELETE">

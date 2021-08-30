@@ -61,15 +61,18 @@ RSpec.describe 'scotch update page', type: :feature do
     expect(current_path).to eq('/scotches/2/edit')
     expect(page).to have_content('Edit Bowmore 10 yr')
     expect(page).to have_no_content('Edit An OA')
-    fill_in 'scotch[year]', with: '5'
+    fill_in('Year:', :with => '5')
+    fill_in('Scotch Name:', :with => 'Bowmore 5 yr')
+    uncheck('Yes')
 
-    expect(page).to have_button('Submit')
+    expect(page).to have_button('Update')
 
-    click_button 'Submit'
+    click_button 'Update'
 
     expect(current_path).to eq('/scotches/2')
-    expect(page).to have_content('Bowmore 10 yr')
+    expect(page).to have_content('Bowmore 5 yr')
     expect(page).to have_content('5')
     expect(page).to have_no_content('An OA')
+    expect(page).to have_no_content('true')
   end
 end
