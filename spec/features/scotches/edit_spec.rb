@@ -46,7 +46,7 @@ RSpec.describe 'scotch update page', type: :feature do
                                     })
     @scotch_3 = Scotch.create!({
                                     name: "Bowmore 12 yr",
-                                    single_malt: false,
+                                    single_malt: true,
                                     year: 12,
                                     updated_at: '2021-08-26 21:34:25 UTC',
                                     created_at: '2021-08-26 21:34:25 UTC',
@@ -57,12 +57,10 @@ RSpec.describe 'scotch update page', type: :feature do
   end
 
   it 'only shows editable fields for the scotch selected' do
-    # User Story 12, Parent Update (x2); # As a visitor; # When I visit a parent show page; # Then I see a link to update the parent "Update Parent"; # When I click the link "Update Parent"; # Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:; # When I fill out the form with updated information; # And I click the button to submit the form; # Then a `PATCH` request is sent to '/parents/:id',; # the parent's info is updated,; # and I am redirected to the Parent's Show page where I see the parent's updated info
+    # User Story 14, Child Update (x2); As a visitor; # When I visit a Child Show page; # Then I see a link to update that Child "Update Child";# When I click the link; # I am taken to '/child_table_name/:id/edit' where I see a form to edit the child's attributes:; # When I click the button to submit the form "Update Child"; # Then a `PATCH` request is sent to '/child_table_name/:id',;# the child's data is updated,;# and I am redirected to the Child Show page where I see the Child's updated information
     expect(current_path).to eq('/scotches/2/edit')
     expect(page).to have_content('Edit Bowmore 10 yr')
-    # expect(page).to have_content('1779')
     expect(page).to have_no_content('Edit An OA')
-    # select 'disillery[scotland_location]'
     fill_in 'scotch[year]', with: '5'
 
     expect(page).to have_button('Submit')
