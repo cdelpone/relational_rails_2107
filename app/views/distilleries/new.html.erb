@@ -4,7 +4,7 @@
 
 <%= form_with url: "/distilleries", local: true do |f| %>
   <%= f.label :name, "Distillery Name:" %>
-  <%= f.text_field :name %><br>
+  <%= f.text_field :name, :size => "30" %><br>
   <%= f.label :scotland_location, "Located in Scotland?" %>
   <%= f.check_box :scotland_location %>
   <%= f.label :scotland_location, "Yes", :value => true %><br>
