@@ -42,12 +42,21 @@ RSpec.describe 'Distillery scotches index' do
                                     })
     @scotch_3 = Scotch.create!({
                                     name: "Bowmore 12 yr",
-                                    single_malt: false,
+                                    single_malt: true,
                                     year: 12,
                                     updated_at: '2021-08-26 21:34:25 UTC',
                                     created_at: '2021-08-26 21:34:25 UTC',
                                     distillery_id: 7,
                                     id: 3
+                                    })
+    @scotch_5 = Scotch.create!({
+                                    name: "Bowmore 5 yr",
+                                    single_malt: true,
+                                    year: 18,
+                                    updated_at: '2021-08-26 21:34:25 UTC',
+                                    created_at: '2021-08-26 21:34:25 UTC',
+                                    distillery_id: 7,
+                                    id: 5
                                     })
     visit "/distilleries/#{@distillery_7.id}/scotches"
   end
@@ -72,8 +81,7 @@ RSpec.describe 'Distillery scotches index' do
   end
 
   it 'links to the scotches index page(interactivity)' do
-    # User Story 9, Parent Index Link
-    # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
+    # User Story 8, Child Index Link; # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Child Index
     expect(page).to have_link('Scotches')
     click_link 'Scotches'
     expect(current_path).to eq("/scotches")
@@ -82,6 +90,55 @@ RSpec.describe 'Distillery scotches index' do
     expect(page).to have_content(@scotch_3.name)
   end
 
+  it 'has a link to create new scotch for this distillery' do
+    # User Story 13, Parent Child Creation (x2); # As a visitor; # When I visit a Parent Childs Index page; # Then I see a link to add a new adoptable child for that parent "Create Child"; # When I click the link; # I am taken to '/parents/:parent_id/child_table_name/new' where I see a form to add a new adoptable child; # When I fill in the form with the child's attributes; # And I click the button "Create Child"; # Then a `POST` request is sent to '/parents/:parent_id/child_table_name',; # a new child object/row is created for that parent,; # and I am redirected to the Parent Childs Index page where I can see the new child listed;
+    expect(page).to have_link('Create Scotch')
+    click_link 'Create Scotch'
+    expect(current_path).to eq("/distilleries/7/scotches/new")
+
+    expect(page).to have_content('New Scotch')
+    fill_in 'scotch[name]', with: 'Bowmore 15 yr'
+    choose 'false'
+    fill_in 'scotch[year]', with: '15'
+
+    expect(page).to have_button('Create Scotch')
+    click_button 'Create Scotch'
+    expect(current_path).to eq("/distilleries/#{@distillery_7.id}/scotches")
+    expect(page).to have_content('Bowmore 15 yr')
+    expect(page).to have_content('false')
+    expect(page).to have_content('15')
+  end
+
+  it 'links to a an alphabetically sorted list of scotches' do
+    # User Story 16, Sort Parent's Children in Alphabetical Order by name (x2);
+    # As a visitor; # When I visit the Parent's children Index Page; # Then I see a link to sort children in alphabetical order; # When I click on the link; # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+    scotch_8 = Scotch.create!({
+                                    name: "Cool Scotch 20 yr",
+                                    single_malt: true,
+                                    year: 20,
+                                    updated_at: '2021-08-26 21:34:25 UTC',
+                                    created_at: '2021-08-26 21:34:25 UTC',
+                                    distillery_id: 7,
+                                    id: 8
+                                    })
+    scotch_9 = Scotch.create!({
+                                    name: "A Cool Scotch 2 yr",
+                                    single_malt: true,
+                                    year: 2,
+                                    updated_at: '2021-08-26 21:34:25 UTC',
+                                    created_at: '2021-08-26 21:34:25 UTC',
+                                    distillery_id: 7,
+                                    id: 9
+                                    })
+
+    expect(page).to have_link('Sort Alphabetically')
+    click_link 'Sort Alphabetically'
+    expect(current_path).to eq("/distilleries/7/scotches")
+    expect("A Cool Scotch 2 yr").to appear_before("Cool Scotch 20 yr", only_text: true)
+    expect("A Cool Scotch 2 yr").to appear_before("Bowmore 5 yr", only_text: true)
+    expect("A Cool Scotch 2 yr").to appear_before("Bowmore 10 yr", only_text: true)
+    expect("Bowmore 12 yr").to appear_before("Cool Scotch 20 yr", only_text: true)
+  end
   it 'links to each scotches show page' do
   end
   it 'links to each scotches edit page' do
