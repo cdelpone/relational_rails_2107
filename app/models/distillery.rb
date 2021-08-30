@@ -1,4 +1,7 @@
 class Distillery < ApplicationRecord
+
+  validates_presence_of :name, :established, :scotland_location
+
   has_many :scotches
 
   def self.order_by_creation
@@ -10,4 +13,8 @@ class Distillery < ApplicationRecord
     scotches.count
     # calling this method on an instance of a distillery
   end
+
+  # def new_scotch
+  #   Scotch.new(:distillery_id => self)
+  # end
 end
