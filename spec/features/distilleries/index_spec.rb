@@ -6,7 +6,7 @@ RSpec.describe 'distilleries index page', type: :feature do
       @distillery_6 = Distillery.create!({
                                       name: "Laphroaig",
                                       established: 1815,
-                                      scotland_location: true,
+                                      scotland_location: false,
                                       updated_at: '2021-08-26 00:06:30 UTC',
                                       created_at: '2021-08-26 00:06:30 UTC',
                                       id: 6
@@ -83,7 +83,7 @@ RSpec.describe 'distilleries index page', type: :feature do
       @distillery_6 = Distillery.create!({
                                       name: "Laphroaig",
                                       established: 1815,
-                                      scotland_location: true,
+                                      scotland_location: false,
                                       updated_at: '2021-08-26 00:06:30 UTC',
                                       created_at: '2021-08-26 00:06:30 UTC',
                                       id: 6
@@ -114,9 +114,9 @@ RSpec.describe 'distilleries index page', type: :feature do
     it 'button to delete distillery' do
       # User Story 22, Parent Delete From Parent Index Page (x1)
       # As a visitor; # When I visit the parent index page; # Next to every parent, I see a link to delete that parent; # When I click the link; # I am returned to the Parent Index Page where I no longer see that parent
-      expect(page).to have_button('Delete')
+      expect(page).to have_link('Delete')
 
-      click_button 'Delete'
+      click_link 'Delete'
 
       expect(current_path).to eq('/distilleries')
       expect(page).to have_no_content(@distillery_6.name)
