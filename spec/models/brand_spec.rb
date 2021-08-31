@@ -20,7 +20,7 @@ RSpec.describe Brand do
       gnarly: true
     })
     @skateboard_1 = Skateboard.create!({
-      board_name: "dogtown",
+      board_name: "Dogtown",
       cost: 20.00,
       nose: true,
       brand_id: @brand_1.id
@@ -39,5 +39,9 @@ RSpec.describe Brand do
 
   it 'can give the num of skateboards' do
     expect(@brand_1.num_of_skateboards).to eq(2)
+  end
+
+  it 'can order the skateboards by board name alphabetically' do
+    expect(@brand_1.alphabetize_boards).to eq([@skateboard_2, @skateboard_1])
   end
 end

@@ -1,7 +1,7 @@
 <h1><a href="/skateboards">Skateboards</a> | <a href="/brands">Brands</a></h1>
 
 
-<h1> Brand: <%= @brand.brand_name%> </h1>
+<h1><%= @brand.brand_name%> Skateboards</h1>
 
 <% @skateboards.each do |skateboard| %>
   <h3><a href="/skateboards/<%= skateboard.id %>"><%= skateboard.board_name %></a></h3>
@@ -9,12 +9,10 @@
   <p>Nose?:<%= skateboard.nose %></p>
   <p>Brand:<%= skateboard.brand_id %></p>
 
-  <a href="/skateboards/<%= skateboard.id %>/edit">Edit</a>
-
   <form action="/skateboards/<%= skateboard.id %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="delete"/>
+    <button type="submit">Delete</button>
   </form>
 
   <form action="/skateboards/<%= skateboard.id %>/edit">
@@ -27,4 +25,10 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="order" value="alpha">
   <button type="submit">A-Z</button>
+</form>
+
+<form action="/brands/<%= @brand.id %>/skateboards" >
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="cost_index" value="over_20">
+  <button type="submit">Over $20</button>
 </form>

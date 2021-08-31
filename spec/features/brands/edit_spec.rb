@@ -30,4 +30,11 @@ RSpec.describe 'Brand Edit' do
 
     expect(current_path).to eq("/brands/#{@brand.id}")
   end
+
+  it 'has a link to the all the brands and all skateboards' do
+    click_on "Skateboards"
+    expect(current_path).to eq("/skateboards")
+    click_on "Brands"
+    expect(current_path).to eq("/brands")
+  end
 end

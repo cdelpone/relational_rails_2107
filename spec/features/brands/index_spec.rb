@@ -45,4 +45,11 @@ RSpec.describe 'can dispay an index with options' do
     expect("Deathwish").to appear_before("Birdhouse", only_text: true)
     expect("Birdhouse").to appear_before("dogtown", only_text: true)
   end
+
+  it 'has a link to the all the brands and all skateboards' do
+    click_on "Skateboards"
+    expect(current_path).to eq("/skateboards")
+    click_on "Brands"
+    expect(current_path).to eq("/brands")
+  end
 end

@@ -9,14 +9,20 @@ RSpec.describe 'can dispay a brand with its skateboards' do
       })
     @skateboard_1 = Skateboard.create!({
       board_name: "Dogtown",
-      cost: 20.00,
+      cost: 45.00,
       nose: true,
       brand_id: @brand.id
       })
     @skateboard_2 = Skateboard.create!({
       board_name: "Birdhouse",
       cost: 40.00,
-      nose: false,
+      nose: true,
+      brand_id: @brand.id
+      })
+    @skateboard_3 = Skateboard.create!({
+      board_name: "Smokeshow",
+      cost: 5.00,
+      nose: true,
       brand_id: @brand.id
       })
 
@@ -36,6 +42,14 @@ RSpec.describe 'can dispay a brand with its skateboards' do
   it 'can display if the board has nose or not' do
     expect(page).to have_content(@skateboard_1.nose)
     expect(page).to have_content(@skateboard_2.nose)
+  end
+
+  it 'has a button to show only the boards over 20 in cost' do
+    expect(page).to have_button("Over $20")
+
+    click_button "Over $20"
+
+    expect(page).to have_no_content("Smokeshow")
   end
 
   it 'has a button to orginize in alphabetical order' do
