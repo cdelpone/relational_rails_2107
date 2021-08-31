@@ -1,4 +1,4 @@
-<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/scotches/new">New Scotch</a>
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="distilleries/#{@distillery.id}/scotches/new">New Scotch</a>
 
 <h2>Scotch Notes:</h2>
 <% @scotches.each do |scotch| %>
@@ -17,6 +17,8 @@
     <input type="submit" value="delete"/>
   </form>
 <% end %><br><br>
+
+<%= link_to "Only returns records with more than 10 years of scotch year", controller: :distilleries_scotches, :action => "index", :year => "> 10" %> <br>
 
 <%= link_to "Sort Alphabetically", controller: :distilleries_scotches, :action => "index", :order => "alphabetical" %> <br>
 

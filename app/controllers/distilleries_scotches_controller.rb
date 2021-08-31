@@ -1,10 +1,12 @@
 class DistilleriesScotchesController < ApplicationController
   def index
     @distillery = Distillery.find(params[:distillery_id])
-    @scotches = if params[:order] = 'alphabetical'
-      @distillery.sort_alpha
+    if params[:order]
+      @scotches = @distillery.sort_alpha
+    elsif params[:year]
+      @scotches = @distillery.greater_than_10
     else
-      @distillery.scotches
+      @scotches = @distillery.scotches
     end
   end
 
@@ -15,6 +17,7 @@ class DistilleriesScotchesController < ApplicationController
 
   def create
     distillery = Distillery.find(params[:distillery_id])
+
     @scotch = distillery.scotches.create!(scotch_params)
     redirect_to "/distilleries/#{distillery.id}/scotches"
   end

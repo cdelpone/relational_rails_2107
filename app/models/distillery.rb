@@ -18,4 +18,8 @@ class Distillery < ApplicationRecord
   def sort_alpha
     self.scotches.order(name: :asc)
   end
+
+  def greater_than_10
+    self.scotches.where("year > 10")
+  end
 end
