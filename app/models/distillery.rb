@@ -1,6 +1,7 @@
 class Distillery < ApplicationRecord
 
-  validates_presence_of :name, :established, :scotland_location
+  validates_presence_of :name, :established
+  validates_inclusion_of :scotland_location, :in => [true, false]
 
   has_many :scotches
 
@@ -14,7 +15,7 @@ class Distillery < ApplicationRecord
     # calling this method on an instance of a distillery
   end
 
-  # def new_scotch
-  #   Scotch.new(:distillery_id => self)
-  # end
+  def sort_alpha
+    self.scotches.order(name: :asc)
+  end
 end

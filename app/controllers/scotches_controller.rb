@@ -10,11 +10,8 @@ class ScotchesController < ApplicationController
 
   def create
     scotch = Scotch.create(scotch_params)
-    if scotch.save
-      redirect_to '/scotches'
-    else
-      "wrong"
-    end
+    scotch.save
+    redirect_to '/scotches'
   end
 
   def show

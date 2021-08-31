@@ -9,9 +9,10 @@
 <p>Number of scotches: <%= @distillery.scotches.count %></p>
 <a href="/distilleries/<%= @distillery.id %>/scotches/">All Scotches from this distillery.</a><br><br>
 
-<a href="/distilleries/<%= @distillery.id %>/edit">Update <%= @distillery.name %></a>
+<a href="/distilleries/<%= @distillery.id %>/edit">Update <%= @distillery.name %></a><br><br>
+
 <form action="/distilleries/<%= @distillery.id %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="delete"/>
+  <input type="submit" value="Delete"/>
 </form>

@@ -7,12 +7,8 @@ class DistilleriesController < ApplicationController
   end
 
   def create
-    distillery = Distillery.new(distillery_params)
-    if distillery.save
-      redirect_to '/distilleries'
-    else
-      "wrong"
-    end
+    distillery = Distillery.create(distillery_params)
+    redirect_to '/distilleries'
   end
 
   def show
@@ -37,7 +33,6 @@ class DistilleriesController < ApplicationController
 
 private
   def distillery_params
-    # params.require(:distillery).permit(:name, :scotland_location, :established)
     params.permit(:name, :scotland_location, :established)
   end
 end

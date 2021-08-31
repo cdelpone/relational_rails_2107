@@ -33,7 +33,7 @@ RSpec.describe 'Distillery scotches index' do
                                     })
     @scotch_2 = Scotch.create!({
                                     name: "Bowmore 10 yr",
-                                    single_malt: true,
+                                    single_malt: false,
                                     year: 10,
                                     updated_at: '2021-08-26 20:10:37 UTC',
                                     created_at: '2021-08-26 20:10:37 UTC',
@@ -61,16 +61,18 @@ RSpec.describe 'Distillery scotches index' do
     visit "/distilleries/#{@distillery_7.id}/scotches"
   end
 
-  it 'shows all the names of the scotches for the distillery' do
+  it 'shows all attributes of scotches associated with the distillery' do
     # User Story 5, Parent Children Index (x2)
     # As a visitor; # When I visit '/parents/:parent_id/child_table_name'; # Then I see each Child that is associated with that Parent with each Child's attributes:
     expect(page).to have_content(@scotch_2.name)
     expect(page).to have_content(@scotch_2.single_malt)
     expect(page).to have_content(@scotch_2.year)
     expect(page).to have_content(@scotch_2.distillery_id)
+    expect(@scotch_2.distillery_id).to eq(7)
     expect(page).to have_content(@scotch_2.updated_at)
     expect(page).to have_content(@scotch_2.created_at)
   end
+
   it 'links to the distillery index page(interactivity)' do
     # User Story 9, Parent Index Link
     # As a visitor; # When I visit any page on the site; # Then I see a link at the top of the page that takes me to the Parent Index
@@ -95,17 +97,16 @@ RSpec.describe 'Distillery scotches index' do
     expect(page).to have_link('Create Scotch')
     click_link 'Create Scotch'
     expect(current_path).to eq("/distilleries/7/scotches/new")
-
     expect(page).to have_content('New Scotch')
-    fill_in 'scotch[name]', with: 'Bowmore 15 yr'
-    choose 'false'
-    fill_in 'scotch[year]', with: '15'
+    fill_in "Scotch Name:", with: 'Bowmore 15 yr'
+    check('Single Malt?')
+    check('Yes')
+    fill_in 'Year:', with: '15'
 
     expect(page).to have_button('Create Scotch')
     click_button 'Create Scotch'
     expect(current_path).to eq("/distilleries/#{@distillery_7.id}/scotches")
     expect(page).to have_content('Bowmore 15 yr')
-    expect(page).to have_content('false')
     expect(page).to have_content('15')
   end
 
@@ -130,14 +131,13 @@ RSpec.describe 'Distillery scotches index' do
                                     distillery_id: 7,
                                     id: 9
                                     })
-
+    expect("Cool Scotch 20 yr").to appear_before("A Cool Scotch 2 yr", only_text: true)
     expect(page).to have_link('Sort Alphabetically')
     click_link 'Sort Alphabetically'
     expect(current_path).to eq("/distilleries/7/scotches")
     expect("A Cool Scotch 2 yr").to appear_before("Cool Scotch 20 yr", only_text: true)
     expect("A Cool Scotch 2 yr").to appear_before("Bowmore 5 yr", only_text: true)
-    expect("A Cool Scotch 2 yr").to appear_before("Bowmore 10 yr", only_text: true)
-    expect("Bowmore 12 yr").to appear_before("Cool Scotch 20 yr", only_text: true)
+    expect("Bowmore 10 yr").to appear_before("Cool Scotch 20 yr", only_text: true)
   end
   it 'links to each scotches show page' do
   end
