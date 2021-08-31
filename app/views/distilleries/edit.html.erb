@@ -7,13 +7,13 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PATCH" />
   <label for="distillery[name]">Distillery Name:</label>
-    <input type="string" name="distillery[name]" value="<%= @distillery.name %>"/><br/>
+  <input type="string" name="distillery[name]" value="<%= @distillery.name %>"/><br/>
   <label for="distillery[scotland_location]">Located in Scotland?</label>
-    <input type="radio" id="true" name="distillery[scotland_location]" value="<%= @distillery.scotland_location %>"/>
-    <label for="true">true</label>
-    <input type="radio" id="false" name="distillery[scotland_location]" value="<%= @distillery.scotland_location %>"/>
-    <label for="false">false</label><br/>
+  <input type="radio" id="true" name="distillery[scotland_location]" value="<%= @distillery.scotland_location %>"/>
+  <label for="true">true</label>
+  <input type="radio" id="false" name="distillery[scotland_location]" value="<%= @distillery.scotland_location %>"/>
+  <label for="false">false</label><br/>
   <label for="established">Established In:</label>
-    <input type="number" name="distillery[established]" size="4" value="<%= @distillery.established %>"/><br><br>
+  <input type="number" name="distillery[established]" size="4" value="<%= @distillery.established %>"/><br><br>
   <button type="submit">Submit</button>
 </form>

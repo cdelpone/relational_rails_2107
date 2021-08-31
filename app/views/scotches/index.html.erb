@@ -10,11 +10,6 @@
   Updated: <%= scotch.updated_at %><br>
   Created: <%= scotch.created_at %></p>
 
-  <a href="/scotches/<%= scotch.id %>/edit">Update <%= scotch.name %></a>
-
-  <form action="/scotches/<%= scotch.id %>" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete"/>
-  </form>
+  <a href="/scotches/<%= scotch.id %>/edit">Update <%= scotch.name %></a><br>
+  <%= link_to "Delete", "/scotches/#{scotch.id}", :method => :delete %><br>
 <% end %>

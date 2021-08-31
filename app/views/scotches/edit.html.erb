@@ -8,7 +8,6 @@
   <%= f.text_field :name, :placeholder => "#{@scotch.name}", :size => "30" %><br>
   <%= f.label :single_malt, "Single Malt?" %>
   <%= f.check_box :single_malt %>
-  <%= f.label :single_malt, "Yes", :value => true %><br>
   <%= f.label :year, "Year:" %>
   <%= f.text_field :year, :placeholder => "#{@scotch.year}", :size => "4" %><br><br>
   <%= f.submit "Update" %>

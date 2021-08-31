@@ -11,10 +11,6 @@
   Established: <%= distillery.established %><br>
   Updated: <%= distillery.updated_at %><br>
   Created: <%= distillery.created_at %></p>
-  <a href="/distilleries/<%= distillery.id %>/edit">Update <%= distillery.name %></a>
-  <form action="/distilleries/<%= distillery.id %>" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete"/>
-  </form>
+  <a href="/distilleries/<%= distillery.id %>/edit">Update <%= distillery.name %></a><br>
+  <%= link_to "Delete", "/distilleries/#{distillery.id}", :method => :delete %><br>
 <% end %>

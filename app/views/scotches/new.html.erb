@@ -8,6 +8,7 @@
   <%= f.text_field :name, :placeholder => "Ex: Glenmorangie 10 year", :size => "30" %><br>
   <%= f.label :single_malt, "Single Malt?" %>
   <%= f.check_box :single_malt %>
+  <%= f.label :single_malt, "Yes", :value => true %><br>
   <%= f.label :year, "Year:" %>
   <%= f.text_field :year %><br><br>
   <%= f.submit "Create Scotch" %>

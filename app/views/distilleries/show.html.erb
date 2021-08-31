@@ -10,12 +10,6 @@ Created: <%= @distillery.created_at %><br>
 Updated: <%= @distillery.updated_at %></p>
 Number of scotches: <%= @distillery.scotches.count %><br><br>
 <a href="/distilleries/<%= @distillery.id %>/scotches/">All Scotches from <%= @distillery.name %></a><br><br>
-
-<a href="/distilleries/<%= @distillery.id %>/edit">Update <%= @distillery.name %></a><br><br>
-
-<form action="/distilleries/<%= @distillery.id %>" method="POST">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete"/>
-</form><br>
+<a href="/distilleries/<%= @distillery.id %>/edit">Update <%= @distillery.name %></a><br>
+<%= link_to "Delete", "/distilleries/#{@distillery.id}", :method => :delete %><br>
 <a href="/distilleries">Return to Distilleries homepage</a>
