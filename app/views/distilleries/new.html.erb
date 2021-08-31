@@ -2,12 +2,11 @@
 
 <h2>New Distillery</h2>
 
-<%= form_with url: "/distilleries", local: true do |f| %>
+<%= form_with url: "/distilleries", method: :post, local: true do |f| %>
   <%= f.label :name, "Distillery Name:" %>
   <%= f.text_field :name, :size => "30" %><br>
   <%= f.label :scotland_location, "Located in Scotland?" %>
   <%= f.check_box :scotland_location %>
-  <%= f.label :scotland_location, "Yes", :value => true %><br>
   <%= f.label :established, "Year Established:" %>
   <%= f.text_field :established %><br><br>
   <%= f.submit "Create Distillery" %>

@@ -15,11 +15,11 @@ class DistilleriesScotchesController < ApplicationController
 
   def create
     distillery = Distillery.find(params[:distillery_id])
-    @scotch = distillery.scotches.create({
-                  name: params[:name],
-                  single_malt: params[:single_malt],
-                  year: params[:year]
-                })
+    @scotch = distillery.scotches.create!(scotch_params)
     redirect_to "/distilleries/#{distillery.id}/scotches"
   end
+
+  def scotch_params
+    params.permit(:name, :year, :single_malt)
+   end
 end

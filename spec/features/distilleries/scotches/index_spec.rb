@@ -33,7 +33,7 @@ RSpec.describe 'Distillery scotches index' do
                                     })
     @scotch_2 = Scotch.create!({
                                     name: "Bowmore 10 yr",
-                                    single_malt: true,
+                                    single_malt: false,
                                     year: 10,
                                     updated_at: '2021-08-26 20:10:37 UTC',
                                     created_at: '2021-08-26 20:10:37 UTC',
@@ -89,7 +89,7 @@ RSpec.describe 'Distillery scotches index' do
     expect(current_path).to eq("/scotches")
     expect(page).to have_content(@scotch_1.name)
     expect(page).to have_content(@scotch_2.name)
-    # expect(page).to have_content(@scotch_3.name)
+    expect(page).to have_content(@scotch_3.name)
   end
 
   it 'has a link to create new scotch for this distillery' do

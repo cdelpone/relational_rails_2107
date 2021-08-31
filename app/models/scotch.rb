@@ -1,12 +1,7 @@
 class Scotch < ApplicationRecord
-  validates_presence_of :name, :single_malt, :year
+  validates_presence_of :name, :year
+  validates_inclusion_of :single_malt, :in => [true, false]
 
   belongs_to :distillery
-
-# if params[:order]
-#   chara.order(:name)
-# else chars
-#   in p/c contrllers
-#   if params [:sort]
 
 end
