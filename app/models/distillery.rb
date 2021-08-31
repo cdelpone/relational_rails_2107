@@ -14,6 +14,11 @@ class Distillery < ApplicationRecord
     # calling this method on an instance of a distillery
   end
 
+  def sort_alpha
+    self.scotches.order(name: :asc)
+    # render :action => :index
+  end
+
   # def new_scotch
   #   Scotch.new(:distillery_id => self)
   # end
