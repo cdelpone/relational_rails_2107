@@ -23,4 +23,14 @@ RSpec.describe 'Brand show' do
     expect(page).to have_content(@brand.gnarly)
   end
 
+  it 'has a link to the brands skateboards' do
+    click_button "#{@brand.brand_name} Skateboards"
+  end
+
+  it 'has a link to the all the brands and all skateboards' do
+    click_on "Skateboards"
+    expect(current_path).to eq("/skateboards")
+    click_on "Brands"
+    expect(current_path).to eq("/brands")
+  end
 end

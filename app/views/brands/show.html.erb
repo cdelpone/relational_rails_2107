@@ -4,11 +4,19 @@
 <p>Year Est:<%= @brand.established %></p>
 <p>Gnarly?:<%= @brand.gnarly %></p>
 <p>No. of Skateboards<%= @brand.num_of_skateboards %></p>
-<a href="/brands/<%= @brand.id %>/edit">Edit</a>
+
+<form action="/brands/<%= @brand.id %>/edit">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <button type="submit">Update</button>
+</form>
+
 <form action="/brands/<%= @brand.id %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="delete">
+  <button type="submit">Delete</button>
 </form>
 
-<a href="/brands/<%= @brand.id %>/skateboards">Skateboards</a>
+<form action="/brands/<%= @brand.id %>/skateboards">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <button type="submit"><%= @brand.brand_name %> Skateboards</button>
+</form>

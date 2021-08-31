@@ -29,7 +29,7 @@ RSpec.describe 'Skateboard Edit' do
     click_on "Submit"
 
     expect(page).to have_content("Sucker")
-    # expect(page).to have_content("40.0") FIX THIS LATER
+    expect(page).to have_content("40.0")
     expect(page).to have_content("true")
   end
 
@@ -37,5 +37,12 @@ RSpec.describe 'Skateboard Edit' do
     click_on "Submit"
 
     expect(current_path).to eq("/skateboards/#{@skateboard.id}")
+  end
+
+  it 'has a link to the all the brands and all skateboards' do
+    click_on "Skateboards"
+    expect(current_path).to eq("/skateboards")
+    click_on "Brands"
+    expect(current_path).to eq("/brands")
   end
 end
