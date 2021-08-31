@@ -2,7 +2,6 @@
 <!-- | <a href="/scotches/new">New Scotch</a> -->
 
 <h2>All Scotches</h2>
-
 <% @scotches.each do |scotch| %>
 <h3><a href="/scotches/<%= scotch.id %>"><%= scotch.name %></a></h3>
   <p>Single Malt?: <%= scotch.single_malt %><br>
@@ -11,7 +10,7 @@
   Updated: <%= scotch.updated_at %><br>
   Created: <%= scotch.created_at %></p>
 
-  <a href="/scotches/<%= scotch.id %>/edit">Update</a>
+  <a href="/scotches/<%= scotch.id %>/edit">Update <%= scotch.name %></a>
 
   <form action="/scotches/<%= scotch.id %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

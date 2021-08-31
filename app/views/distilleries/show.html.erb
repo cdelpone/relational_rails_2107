@@ -1,15 +1,15 @@
-<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/distilleries/<%= @distillery.id %>/scotches/new">New Scotch</a><br><br>
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/distilleries/<%= @distillery.id %>/scotches/new">New Scotch</a><br>
 
 <!-- | <a href="/scotches/new">New Scotch</a> -->
 
 <h2><%= @distillery.name %></h2>
 
-<p>Located in Scotland?: <%= @distillery.scotland_location %></p>
-<p>Established: <%= @distillery.established %></p>
-<p>Created: <%= @distillery.created_at %></p>
-<p>Updated: <%= @distillery.updated_at %></p>
-<p>Number of scotches: <%= @distillery.scotches.count %></p>
-<a href="/distilleries/<%= @distillery.id %>/scotches/">All Scotches from this distillery.</a><br><br>
+<p>Located in Scotland?: <%= @distillery.scotland_location %><br>
+Established: <%= @distillery.established %><br>
+Created: <%= @distillery.created_at %><br>
+Updated: <%= @distillery.updated_at %></p>
+Number of scotches: <%= @distillery.scotches.count %><br><br>
+<a href="/distilleries/<%= @distillery.id %>/scotches/">All Scotches from <%= @distillery.name %></a><br><br>
 
 <a href="/distilleries/<%= @distillery.id %>/edit">Update <%= @distillery.name %></a><br><br>
 
@@ -17,4 +17,5 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete"/>
-</form>
+</form><br>
+<a href="/distilleries">Return to Distilleries homepage</a>

@@ -1,8 +1,8 @@
 <a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a>
-| <a href="/distilleries/<%= @distillery.id %>/scotches/new">New Scotch</a><br><br>
+| <a href="/distilleries/<%= @distillery.id %>/scotches/new">New Scotch</a><br>
 <!-- | <a href="distilleries/#{@distillery.id}/scotches/new">New Scotch</a> -->
 
-<h2>Scotch Notes:</h2>
+<h2><%= @distillery.name %> Scotch Notes</h2>
 <% @scotches.each do |scotch| %>
 <h3><a href="/scotches/<%= scotch.id %>"><%= scotch.name %></a></h3>
   <p>Single Malt?: <%= scotch.single_malt %><br>
@@ -11,19 +11,18 @@
   Updated: <%= scotch.updated_at %><br>
   Created: <%= scotch.created_at %></p>
 
-  <a href="/scotches/<%= scotch.id %>/edit">Update</a>
+  <a href="/scotches/<%= scotch.id %>/edit">Update <%= scotch.name %></a>
 
   <form action="/scotches/<%= scotch.id %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="delete"/>
   </form>
-<% end %><br><br>
+<% end %><br>
 
 <%= link_to "Only returns records with more than 10 years of scotch year", controller: :distilleries_scotches, :action => "index", :year => "> 10" %> <br>
 
 <%= link_to "Sort Alphabetically", controller: :distilleries_scotches, :action => "index", :order => "alphabetical" %> <br>
 
 <a href="/distilleries/<%= @distillery.id %>/scotches/new">Create Scotch</a><br><br>
-
-<p><a href="/distilleries/<%= @distillery.id %>">Return to <%= @distillery.name %> homepage</a></p>
+<a href="/distilleries/<%= @distillery.id %>">Return to <%= @distillery.name %> homepage</a>
