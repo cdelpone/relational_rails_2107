@@ -5,10 +5,11 @@
   <%= f.label :name, "Scotch Name:" %>
   <%= f.text_field :name, :placeholder => "Ex: Glenmorangie 10 year", :size => "30" %><br>
   <%= f.label :single_malt, "Single Malt?" %><br>
-  <%= f.check_box :single_malt %>
-  <%= f.label :single_malt, "Yes", :checked_value => true %><br>
-  <%= f.check_box :single_malt %>
-  <%= f.label :single_malt, "No", :checked_value => false %><br>
+  <%= f.check_box :single_malt, :value => true %>
+  <%= f.label :single_malt, "Yes", :value => true %><br>
+  <%= f.label :single_malt, "Single Malt?" %><br>
+  <%= f.check_box :single_malt, :value => false %>
+  <%= f.label :single_malt, "No", :value => false %><br>
   <%= f.label :year, "Year:" %>
   <%= f.text_field :year %><br><br>
   <%= f.hidden_field :distillery_id, :value => @distillery.id %><br><br>
