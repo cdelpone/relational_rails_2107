@@ -18,7 +18,7 @@
   </form>
 <% end %><br><br>
 
-<%= link_to "Sort Alphabetically", :action => "index" %> <br>
+<%= link_to "Sort Alphabetically", controller: :distilleries_scotches, :action => "index", :order => "alphabetical" %> <br>
 
 <a href="/distilleries/<%= @distillery.id %>/scotches/new">Create Scotch</a><br><br>
 

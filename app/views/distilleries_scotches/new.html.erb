@@ -4,27 +4,14 @@
 <%= form_with url: "/distilleries/#{@distillery.id}/scotches", local: true do |f| %>
   <%= f.label :name, "Scotch Name:" %>
   <%= f.text_field :name, :placeholder => "Ex: Glenmorangie 10 year", :size => "30" %><br>
-  <%= f.label :single_malt, "Single Malt?" %>
+  <%= f.label :single_malt, "Single Malt?" %><br>
   <%= f.check_box :single_malt %>
-  <%= f.label :single_malt, "Yes", :value => true %><br>
+  <%= f.label :single_malt, "Yes", :checked_value => true %><br>
+  <%= f.check_box :single_malt %>
+  <%= f.label :single_malt, "No", :checked_value => false %><br>
   <%= f.label :year, "Year:" %>
   <%= f.text_field :year %><br><br>
-  <%= f.hidden_field :distillery_id, :value => <%= @distillery.id %> %><br><br>
+  <%= f.hidden_field :distillery_id, :value => @distillery.id %><br><br>
 
   <%= f.submit "Create Scotch" %>
 <% end %>
-
-<!-- <form action="/distilleries/<%= @distillery.id %>/scotches" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"><br>
-  <label for="Scotch Name">Scotch Name:</label>
-    <input type="string" name="scotch[name]" placeholder="Ex: Glenmorangie 10 year" size="50"><br><br>
-  <label for="single_malt">Single Malt?</label>
-    <input type="radio" id="true" name="scotch[single_malt]">
-      <label for="true">true</label>
-    <input type="radio" id="false" name="scotch[single_malt]">
-      <label for="false">false</label><br><br>
-  <label for="year">Year:</label>
-    <input type="number" name="scotch[year]"><br>
-    <input type="hidden" name="scotch[distillery_id]" value="<%= @distillery.id %>">
-  <button type="submit">Create Scotch</button>
-</form> -->
