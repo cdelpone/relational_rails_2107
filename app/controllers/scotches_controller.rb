@@ -30,7 +30,6 @@ class ScotchesController < ApplicationController
     else scotch.single_malt != :checked
       scotch.single_malt = false
     end
-    require "pry"; binding.pry
     scotch.save
     redirect_to "/scotches/#{scotch.id}"
   end
