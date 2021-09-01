@@ -21,7 +21,7 @@ RSpec.describe 'distillery update page', type: :feature do
     @distillery_7 = Distillery.create!({
                                     name: "Bowmore",
                                     established: 1779,
-                                    scotland_location: 'true',
+                                    scotland_location: false,
                                     updated_at: '2021-08-26 01:11:07 UTC',
                                     created_at: '2021-08-26 01:11:07 UTC',
                                     id: 7
@@ -58,6 +58,8 @@ RSpec.describe 'distillery update page', type: :feature do
 
   it 'only shows editable fields for the distillery selected' do
     # User Story 12, Parent Update (x2); # As a visitor; # When I visit a parent show page; # Then I see a link to update the parent "Update Parent"; # When I click the link "Update Parent"; # Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:; # When I fill out the form with updated information; # And I click the button to submit the form; # Then a `PATCH` request is sent to '/parents/:id',; # the parent's info is updated,; # and I am redirected to the Parent's Show page where I see the parent's updated info
+    save_and_open_page
+
     expect(page).to have_content('Edit Bowmore')
     # expect(page).to have_content('1779')
     expect(page).to have_no_content('Edit Ardbeg')

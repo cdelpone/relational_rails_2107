@@ -25,6 +25,12 @@ class ScotchesController < ApplicationController
   def update
     scotch = Scotch.find(params[:id])
     scotch.update(scotch_params)
+    if scotch.single_malt == :checked
+      scotch.single_malt = true
+    else scotch.single_malt != :checked
+      scotch.single_malt = false
+    end
+    require "pry"; binding.pry
     scotch.save
     redirect_to "/scotches/#{scotch.id}"
   end

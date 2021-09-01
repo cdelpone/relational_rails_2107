@@ -3,6 +3,20 @@
 
 <h2>Edit <%= @distillery.name %></h2>
 
+<%= form_with url: "/distilleries/#{@distillery.id}", :method => :patch, local: true do |f| %>
+  <%= f.label :name, "Scotch Name:" %>
+  <%= f.text_field :name, :placeholder => "#{@scotch.name}", :size => "30" %><br>
+  <%= f.label :single_malt, "Single Malt?" %>
+  <%= f.check_box :single_malt %>
+  <%= f.label :year, "Year:" %>
+  <%= f.text_field :year, :placeholder => "#{@scotch.year}", :size => "4" %><br><br>
+  <%= f.submit "Update" %>
+<% end %>
+<%= f.label :single_malt, "True" %><br>
+<%= f.check_box :single_malt, :value => 0, :unchecked => (@scotch.single_malt = false) %>
+<%= f.label :single_malt, "False" %>
+
+
 <form action="/distilleries/<%= @distillery.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PATCH" />
