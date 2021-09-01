@@ -3,7 +3,7 @@ class DistilleriesScotchesController < ApplicationController
     @distillery = Distillery.find(params[:distillery_id])
     if params[:order]
       @scotches = @distillery.sort_alpha
-    elsif params[:year]
+    elsif params[:num]
       @scotches = @distillery.greater_than_10("#{params[:num]}")
     else
       @scotches = @distillery.scotches
