@@ -62,7 +62,7 @@ describe Distillery, type: :model do
   describe 'validations' do
     it { should validate_presence_of :name }
     it { should validate_presence_of :established }
-    it { should validate_presence_of :scotland_location }
+    it { should validate_inclusion_of(:scotland_location). in_array([true, false]) }
   end
 
   describe 'class methods' do
@@ -72,9 +72,21 @@ describe Distillery, type: :model do
   end
 
   describe 'instance methods' do
-    describe 'count scotches' do
+    describe 'does stuff with scotches' do
       it 'counts how many scotches a distillery has' do
         expect(@distillery_7.count_scotches).to eq(2)
+      end
+
+      let(:@distillery_7) { order(name: :asc) }
+      it 'sorts scotches alphabetically' do
+        # @distillery_7.stub(:sort_alpha).and_return(@scotch_1, @scotch_2, @scotch_3)
+        # Distillery.should_receive(:order).with(@distillery_7.sort_alpha).and_return(@scotch_1, @scotch_2, @scotch_3)
+        Distillery.should_receive(:sort_alpha).with(@distillery_7.scotches.order(name: :asc)).and_return(@scotch_1, @scotch_2, @scotch_3)
+        # expect(page).to have_content(@scotch_1, @scotch_2, @scotch_3)
+      end
+
+      it 'returns scotches based on a given year threshold' do
+        expect(@distillery_7.greater_than(10)).to_return(@scotch_1, @scotch_3)
       end
     end
   end

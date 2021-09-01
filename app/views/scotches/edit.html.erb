@@ -1,14 +1,14 @@
-<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/scotches/new">New Scotch</a>
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a>
+<!-- | <a href="/scotches/new">New Scotch</a> -->
 
 <h2>Edit <%= @scotch.name %></h2>
 
-<%= form_with url: "/scotches/#{@scotch.id}", method: :patch, local: true do |f| %>
+<%= form_with model: @scotch, url: "/scotches/#{@scotch.id}", method: :patch, local: true do |f| %>
   <%= f.label :name, "Scotch Name:" %>
   <%= f.text_field :name, :placeholder => "#{@scotch.name}", :size => "30" %><br>
-  <%= f.label :single_malt, "Single Malt?" %>
-  <%= f.check_box :single_malt %>
-  <%= f.label :single_malt, "Yes", :value => true %><br>
-  <%= f.label :year, "Year:" %>
+  <%= f.label :single_malt, "Single Malt?" %><br>
+  <%= f.check_box :single_malt, :checked => true %>
+  <br><%= f.label :year, "Year:" %>
   <%= f.text_field :year, :placeholder => "#{@scotch.year}", :size => "4" %><br><br>
   <%= f.submit "Update" %>
 <% end %>

@@ -5,7 +5,7 @@ RSpec.describe 'distillery show page', type: :feature do
     @distillery_6 = Distillery.create!({
                                     name: "Laphroaig",
                                     established: 1815,
-                                    scotland_location: true,
+                                    scotland_location: false,
                                     updated_at: '2021-08-26 00:06:30 UTC',
                                     created_at: '2021-08-26 00:06:30 UTC',
                                     id: 6
@@ -21,7 +21,7 @@ RSpec.describe 'distillery show page', type: :feature do
     @distillery_7 = Distillery.create!({
                                     name: "Bowmore",
                                     established: 1779,
-                                    scotland_location: true,
+                                    scotland_location: false,
                                     updated_at: '2021-08-26 01:11:07 UTC',
                                     created_at: '2021-08-26 01:11:07 UTC',
                                     id: 7
@@ -115,8 +115,8 @@ RSpec.describe 'distillery show page', type: :feature do
     it 'links to the distilleries scotches index page' do
       # User Story 10, Parent Child Index Link; # As a visitor; # When I visit a parent show page ('/parents/:id'); # Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
       visit '/distilleries/7'
-      expect(page).to have_link('All Scotches from this distillery.')
-      click_link 'All Scotches from this distillery.'
+      expect(page).to have_link('All Scotches from Bowmore')
+      click_link 'All Scotches from Bowmore'
       expect(current_path).to eq("/distilleries/#{@distillery_7.id}/scotches/")
       expect(page).to have_content(@scotch_2.name)
       expect(page).to have_content(@scotch_3.name)
@@ -154,8 +154,8 @@ RSpec.describe 'distillery show page', type: :feature do
       # User Story 19, Parent Delete (x2)
       # As a visitor; # When I visit a parent show page; # Then I see a link to delete the parent; # When I click the link "Delete Parent"; # Then a 'DELETE' request is sent to '/parents/:id',; # the parent is deleted, and all child records are deleted; # and I am redirected to the parent index page where I no longer see this parent
       visit '/distilleries/6'
-      expect(page).to have_button('Delete')
-      click_button 'Delete'
+      expect(page).to have_link('Delete')
+      click_link 'Delete'
       expect(current_path).to eq('/distilleries')
       expect(page).to have_no_content(@distillery_6.name)
     end

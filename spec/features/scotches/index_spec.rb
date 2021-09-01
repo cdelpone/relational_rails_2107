@@ -168,9 +168,9 @@ RSpec.describe 'scotches index page', type: :feature do
     it 'button to delete scotch' do
       # User Story 23, Child Delete From Childs Index Page (x1)
       # As a visitor; # When I visit the `child_table_name` index page or a parent `child_table_name` index page; # Next to every child, I see a link to delete that child; # When I click the link; # I should be taken to the `child_table_name` index page where I no longer see that child
-      expect(page).to have_button('Delete')
+      expect(page).to have_link('Delete')
 
-      click_button 'Delete'
+      click_link 'Delete'
 
       expect(current_path).to eq('/scotches')
       expect(page).to have_no_content(@scotch_5.name)

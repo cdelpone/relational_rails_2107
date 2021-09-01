@@ -1,4 +1,5 @@
-<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/scotches/new">New Scotch</a>
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a>
+<!-- | <a href="/scotches/new">New Scotch</a> -->
 
 <h1>Welcome to scotch.scotch.scotch by Distillery!</h1>
 
@@ -10,10 +11,6 @@
   Established: <%= distillery.established %><br>
   Updated: <%= distillery.updated_at %><br>
   Created: <%= distillery.created_at %></p>
-  <a href="/distilleries/<%= distillery.id %>/edit">Update</a>
-  <form action="/distilleries/<%= distillery.id %>" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete"/>
-  </form>
+  <a href="/distilleries/<%= distillery.id %>/edit">Update <%= distillery.name %></a><br>
+  <%= link_to "Delete", "/distilleries/#{distillery.id}", :method => :delete %><br>
 <% end %>

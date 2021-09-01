@@ -22,6 +22,11 @@ class DistilleriesController < ApplicationController
   def update
     distillery = Distillery.find(params[:id])
     distillery.update(distillery_params)
+    if params[:distillery][:scotland_location] == '1'
+      distillery.scotland_location = true
+    else params[:distillery][:scotland_location] == '0'
+      distillery.scotland_location = false
+    end
     distillery.save
     redirect_to "/distilleries/#{distillery.id}"
   end

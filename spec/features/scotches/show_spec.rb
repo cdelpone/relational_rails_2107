@@ -135,8 +135,8 @@ RSpec.describe 'scotch show page', type: :feature do
       # User Story 20, Child Delete (x2)
       # As a visitor; # When I visit a child show page; # Then I see a link to delete the child "Delete Child"; # When I click the link; # Then a 'DELETE' request is sent to '/child_table_name/:id',; # the child is deleted,; # and I am redirected to the child index page where I no longer see this child
       visit '/scotches/1'
-      expect(page).to have_button('Delete')
-      click_button 'Delete'
+      expect(page).to have_link('Delete')
+      click_link 'Delete'
       expect(current_path).to eq('/scotches')
       expect(page).to have_no_content(@scotch_1.name)
     end

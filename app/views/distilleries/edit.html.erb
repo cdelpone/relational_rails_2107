@@ -1,18 +1,12 @@
-<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a> | <a href="/scotches/new">New Scotch</a>
+<a href="/">Main Show</a> | <a href="/distilleries">Distilleries</a> | <a href="/distilleries/new">New Distillery</a> | <a href="/scotches">Scotches</a>
 
 <h2>Edit <%= @distillery.name %></h2>
-
-<form action="/distilleries/<%= @distillery.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="PATCH" />
-  <label for="distillery[name]">Distillery Name:</label>
-    <input type="string" name="distillery[name]" value="<%= @distillery.name %>"/><br/>
-  <label for="distillery[scotland_location]">Located in Scotland?</label>
-    <input type="radio" id="true" name="distillery[scotland_location]" value="<%= @distillery.scotland_location %>"/>
-    <label for="true">true</label>
-    <input type="radio" id="false" name="distillery[scotland_location]" value="<%= @distillery.scotland_location %>"/>
-    <label for="false">false</label><br/>
-  <label for="established">Established In:</label>
-    <input type="number" name="distillery[established]" size="4" value="<%= @distillery.established %>"/><br><br>
-  <button type="submit">Submit</button>
-</form>
+<%= form_with model: @distillery, url: "/distilleries/#{@distillery.id}", method: :patch, local: true do |f| %>
+  <%= f.label :name, "Distillery Name:" %>
+  <%= f.text_field :name, :placeholder => "#{@distillery.name}", :size => "30" %><br>
+  <%= f.label :scotland_location, "Located in Scotland?" %><br>
+  <%= f.check_box :scotland_location, :checked => true %>
+  <br><%= f.label :established, "Established In:" %>
+  <%= f.text_field :established, :placeholder => "#{@distillery.established}", :size => "4" %><br><br>
+  <%= f.submit "Submit" %>
+<% end %>

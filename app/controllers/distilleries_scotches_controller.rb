@@ -1,10 +1,12 @@
 class DistilleriesScotchesController < ApplicationController
   def index
     @distillery = Distillery.find(params[:distillery_id])
-    @scotches = if params[:order] = 'alphabetical'
-      @distillery.sort_alpha
+    if params[:order]
+      @scotches = @distillery.sort_alpha
+    elsif params[:num]
+      @scotches = @distillery.greater_than("#{params[:num]}")
     else
-      @distillery.scotches
+      @scotches = @distillery.scotches
     end
   end
 

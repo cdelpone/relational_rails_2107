@@ -6,7 +6,7 @@ class Distillery < ApplicationRecord
   has_many :scotches
 
   def self.order_by_creation
-    self.all.order(created_at: :desc )
+    self.all.order(created_at: :desc)
     # class method - calling on multiple
   end
 
@@ -17,5 +17,9 @@ class Distillery < ApplicationRecord
 
   def sort_alpha
     self.scotches.order(name: :asc)
+  end
+
+  def greater_than(num)
+    self.scotches.where("year > #{num}")
   end
 end
