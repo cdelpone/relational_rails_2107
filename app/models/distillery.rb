@@ -20,6 +20,6 @@ class Distillery < ApplicationRecord
   end
 
   def greater_than_10(num)
-    self.scotches.where("year > num")
+    self.scotches.where("year > #{num}")
   end
 end
