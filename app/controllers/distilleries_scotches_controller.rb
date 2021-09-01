@@ -4,7 +4,7 @@ class DistilleriesScotchesController < ApplicationController
     if params[:order]
       @scotches = @distillery.sort_alpha
     elsif params[:num]
-      @scotches = @distillery.greater_than_10("#{params[:num]}")
+      @scotches = @distillery.greater_than("#{params[:num]}")
     else
       @scotches = @distillery.scotches
     end

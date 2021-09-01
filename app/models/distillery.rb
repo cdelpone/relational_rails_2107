@@ -19,7 +19,7 @@ class Distillery < ApplicationRecord
     self.scotches.order(name: :asc)
   end
 
-  def greater_than_10(num)
+  def greater_than(num)
     self.scotches.where("year > #{num}")
   end
 end
