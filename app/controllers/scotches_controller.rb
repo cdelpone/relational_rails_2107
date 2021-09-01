@@ -25,9 +25,9 @@ class ScotchesController < ApplicationController
   def update
     scotch = Scotch.find(params[:id])
     scotch.update(scotch_params)
-    if scotch.single_malt == :checked
+    if params[:scotch][:single_malt] == '1'
       scotch.single_malt = true
-    else scotch.single_malt != :checked
+    else params[:scotch][:single_malt] == '0'
       scotch.single_malt = false
     end
     scotch.save
