@@ -16,12 +16,11 @@
 
 <%= link_to "Sort Alphabetically", controller: :distilleries_scotches, :action => "index", :order => "alphabetical" %> <br>
 
-<%= form_with url: "/distilleries/#{@distillery.id}/scotches", :action => "index", local: true do |f| %>
-<%= f.label "Input a number" %>
-<%= f.text_field params[:num] %>
-<% end %>
+<%= form_with url: "/distilleries/#{@distillery.id}/scotches", method: :get, local: true do |f| %>
+<%= f.label "Give me scotches older than:" %>
+<%= f.text_field :num, size: "4" %>
+<%= f.submit 'Enter' %>
+<% end %><br>
 
-<%= link_to "Only returns records with more than a number of scotch year", controller: :distilleries_scotches, :action => "index", :year => "> #{params[:num]}" %> <br>
-
-<a href="/distilleries/<%= @distillery.id %>/scotches/new">Create Scotch</a><br><br>
+<a href="/distilleries/<%= @distillery.id %>/scotches/new">Create Scotch</a><br>
 <a href="/distilleries/<%= @distillery.id %>">Return to <%= @distillery.name %> homepage</a>
