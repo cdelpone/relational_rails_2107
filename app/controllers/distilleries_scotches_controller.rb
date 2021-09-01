@@ -4,7 +4,7 @@ class DistilleriesScotchesController < ApplicationController
     if params[:order]
       @scotches = @distillery.sort_alpha
     elsif params[:year]
-      @scotches = @distillery.greater_than_10
+      @scotches = @distillery.greater_than_10("#{params[:num]}")
     else
       @scotches = @distillery.scotches
     end
@@ -17,7 +17,6 @@ class DistilleriesScotchesController < ApplicationController
 
   def create
     distillery = Distillery.find(params[:distillery_id])
-
     @scotch = distillery.scotches.create!(scotch_params)
     redirect_to "/distilleries/#{distillery.id}/scotches"
   end

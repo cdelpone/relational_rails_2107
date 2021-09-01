@@ -10,14 +10,18 @@
   Distillery: <%= scotch.distillery.name %><br>
   Updated: <%= scotch.updated_at %><br>
   Created: <%= scotch.created_at %></p>
-
   <a href="/scotches/<%= scotch.id %>/edit">Update <%= scotch.name %></a><br>
   <%= link_to "Delete", "/scotches/#{scotch.id}", :method => :delete %><br>
 <% end %><br>
 
-<%= link_to "Only returns records with more than 10 years of scotch year", controller: :distilleries_scotches, :action => "index", :year => "> 10" %> <br>
-
 <%= link_to "Sort Alphabetically", controller: :distilleries_scotches, :action => "index", :order => "alphabetical" %> <br>
+
+<%= form_with url: "/distilleries/#{@distillery.id}/scotches", :action => "index", local: true do |f| %>
+<%= f.label "Input a number" %>
+<%= f.text_field params[:num] %>
+<% end %>
+
+<%= link_to "Only returns records with more than a number of scotch year", controller: :distilleries_scotches, :action => "index", :year => "> #{params[:num]}" %> <br>
 
 <a href="/distilleries/<%= @distillery.id %>/scotches/new">Create Scotch</a><br><br>
 <a href="/distilleries/<%= @distillery.id %>">Return to <%= @distillery.name %> homepage</a>
