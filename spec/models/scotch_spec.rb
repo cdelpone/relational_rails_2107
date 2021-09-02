@@ -64,10 +64,4 @@ describe Scotch, type: :model do
     it { should validate_presence_of :year }
     it { should validate_inclusion_of(:single_malt). in_array([true, false]) }
   end
-
-  describe 'class methods' do
-  end
-
-  describe 'instance methods' do
-  end
 end
