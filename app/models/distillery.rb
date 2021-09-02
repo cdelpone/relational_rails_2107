@@ -16,10 +16,10 @@ class Distillery < ApplicationRecord
   end
 
   def sort_alpha
-    self.scotches.order(name: :asc)
+    scotches.order(:name)
   end
 
   def greater_than(num)
-    self.scotches.where("year > #{num}")
+    scotches.where("year > #{num}")
   end
 end

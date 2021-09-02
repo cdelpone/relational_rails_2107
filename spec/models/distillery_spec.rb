@@ -77,12 +77,8 @@ describe Distillery, type: :model do
         expect(@distillery_7.count_scotches).to eq(2)
       end
 
-      let(:@distillery_7) { order(name: :asc) }
       it 'sorts scotches alphabetically' do
-        # @distillery_7.stub(:sort_alpha).and_return(@scotch_1, @scotch_2, @scotch_3)
-        # Distillery.should_receive(:order).with(@distillery_7.sort_alpha).and_return(@scotch_1, @scotch_2, @scotch_3)
-        Distillery.should_receive(:sort_alpha).with(@distillery_7.scotches.order(name: :asc)).and_return(@scotch_1, @scotch_2, @scotch_3)
-        # expect(page).to have_content(@scotch_1, @scotch_2, @scotch_3)
+        expect(@distillery_7.sort_alpha).to eq([@scotch_2, @scotch_3])
       end
 
       it 'returns scotches based on a given year threshold' do
