@@ -82,7 +82,7 @@ describe Distillery, type: :model do
       end
 
       it 'returns scotches based on a given year threshold' do
-        expect(@distillery_7.greater_than(10)).to_return(@scotch_1, @scotch_3)
+        expect(@distillery_7.greater_than(10)).to eq([@scotch_3])
       end
     end
   end

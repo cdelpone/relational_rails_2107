@@ -21,6 +21,7 @@ class DistilleriesScotchesController < ApplicationController
     redirect_to "/distilleries/#{distillery.id}/scotches"
   end
 
+private
   def scotch_params
     params.permit(:name, :year, :single_malt)
    end
